@@ -1,0 +1,21 @@
+{% extends "platform/views/templates/base.html" %}
+{% block content %}
+
+  <div class="row">
+    <div class="col-lg-12">
+      <ol class="breadcrumb">
+        <li><a href="{{servlet-context}}/"><i class="fa fa-dashboard"></i> Acompanhamento</a></li>
+        <li><a href="{{servlet-context}}/lessons"><i class="fa fa-dashboard"></i> Aulas</a></li>
+        <li class="{{new-lesson-selected}}"><i class="fa fa-table"></i> Nova Aula</li>
+      </ol>
+    </div>
+  </div><!-- /.row -->  
+
+  <div class="col-lg-12">
+
+      <h1 class="page-header">Nova Aula</h1>
+
+  </div><!-- /.row -->
+
+
+{% endblock %}
