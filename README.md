@@ -1,6 +1,6 @@
-# platform
+# Geduca.org
 
-FIXME
+A Collaborative leaning platform
 
 ## Prerequisites
 
