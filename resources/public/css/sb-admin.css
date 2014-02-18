@@ -107,7 +107,7 @@ table.tablesorter thead tr th:hover {
 	height: 100%;
 	border-radius: 0;
 	border: none;
-	background-color: #f8f8f8;
+	background-color: #222222;
 	overflow-y: auto;
   }
 
@@ -120,7 +120,7 @@ table.tablesorter thead tr th:hover {
 	padding: 0;
 	border: none;
 	border-radius: 0;
-	background-color: #ddd;
+	background-color: transparent;
 	box-shadow: none;
 	-webkit-box-shadow: none;
   }
@@ -146,10 +146,6 @@ table.tablesorter thead tr th:hover {
 	background-color: #080808;
   }
 
-  .navbar-toggle {
-    background-color: #ddd;
-  }
-
   /* Nav Messages */
 
   .messages-dropdown .dropdown-menu {
@@ -166,3 +162,19 @@ table.tablesorter thead tr th:hover {
   }
 
 }
+
+/* Gridly */
+
+.gridly {
+  position: relative;
+  width: 960px;
+}
+.brick.small {
+  width: 140px;
+  height: 140px;
+}
+.brick.large {
+  width: 300px;
+  height: 300px;
+}
+
