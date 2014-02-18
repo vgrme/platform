@@ -4923,6 +4923,7 @@ a.list-group-item-danger.active:focus {
   border-bottom: 1px solid transparent;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
+  min-height: 154px;
 }
 .panel-heading > .dropdown .dropdown-toggle {
   color: inherit;
