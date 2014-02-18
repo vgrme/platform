@@ -2,83 +2,79 @@
 {% extends "platform/views/templates/base.html" %}
 {% block content %}
 
-  <div class="row">
+<div class="row">
     <div class="col-lg-12">
       <ol class="breadcrumb">
         <li><a href="{{servlet-context}}/"><i class="fa fa-dashboard"></i> Acompanhamento</a></li>
         <li><a href="{{servlet-context}}/lessons"><i class="fa fa-dashboard"></i> Aulas</a></li>
         <li class="{{new-lesson-selected}}"><i class="fa fa-table"></i> Nova Aula</li>
       </ol>
-    </div>
-  </div><!-- /.row -->  
+   
 
-  <div class="col-lg-12">
-
-      <h1 class="page-header">Nova Aula</h1>
+      <h2 class="page-header text-center">Criando uma aula</h2>
 
       <div id="rootwizard">
-        <div class="navbar">
-          <div class="navbar-inner">
-            <div class="container">
-        <ul>
-            <li><a href="#tab1" data-toggle="tab">First</a></li>
-          <li><a href="#tab2" data-toggle="tab">Second</a></li>
-          <li><a href="#tab3" data-toggle="tab">Third</a></li>
-          <li><a href="#tab4" data-toggle="tab">Forth</a></li>
-          <li><a href="#tab5" data-toggle="tab">Fifth</a></li>
-          <li><a href="#tab6" data-toggle="tab">Sixth</a></li>
-          <li><a href="#tab7" data-toggle="tab">Seventh</a></li>
-        </ul>
-         </div>
-          </div>
-        </div>
-        <div id="bar" class="progress progress-striped active">
-          <div class="bar"></div>
-        </div>
-        <div class="tab-content">
-            <div class="tab-pane" id="tab1">
-              1
-                <div class="gridly">
-                  <div class="brick small"></div>
-                  <div class="brick small"></div>
-                  <div class="brick large"></div>
-                  <div class="brick small"></div>
-                  <div class="brick small"></div>
-                  <div class="brick large"></div>
-                </div>
-            </div>
-            <div class="tab-pane" id="tab2">
-                <p>
-                  <input type='text' name='name' id='name' placeholder='Enter Your Name'>
-                </p>
-            </div>
-          <div class="tab-pane" id="tab3">
-            3
-            </div>
-          <div class="tab-pane" id="tab4">
-            4
-            </div>
-          <div class="tab-pane" id="tab5">
-            5
-            </div>
-          <div class="tab-pane" id="tab6">
-            6
-            </div>
-          <div class="tab-pane" id="tab7">
-            7
-            </div>
-          <ul class="pager wizard">
-            <li class="previous first" style="display:none;"><a href="#">First</a></li>
-            <li class="previous"><a href="#">Previous</a></li>
-            <li class="next last" style="display:none;"><a href="#">Last</a></li>
-              <li class="next"><a href="#">Next</a></li>
+          <div class="navbar">
+            <div class="navbar-inner">
+              <div class="container">
+          <ul>
+              <li><a href="#tab1" data-toggle="tab">First</a></li>
+            <li><a href="#tab2" data-toggle="tab">Second</a></li>
+            <li><a href="#tab3" data-toggle="tab">Third</a></li>
+            <li><a href="#tab4" data-toggle="tab">Forth</a></li>
+            <li><a href="#tab5" data-toggle="tab">Fifth</a></li>
+            <li><a href="#tab6" data-toggle="tab">Sixth</a></li>
+            <li><a href="#tab7" data-toggle="tab">Seventh</a></li>
           </ul>
-        </div>  
+           </div>
+            </div>
+          </div>
+          <div id="bar" class="progress progress-striped active">
+            <div class="bar"></div>
+          </div>
+          <div class="tab-content">
+              <div class="tab-pane" id="tab1">
+                1
+                  <div class="gridly">
+                    <div class="brick small"></div>
+                    <div class="brick small"></div>
+                    <div class="brick large"></div>
+                    <div class="brick small"></div>
+                    <div class="brick small"></div>
+                    <div class="brick large"></div>
+                  </div>
+              </div>
+              <div class="tab-pane" id="tab2">
+                  <p>
+                    <input type='text' name='name' id='name' placeholder='Enter Your Name'>
+                  </p>
+              </div>
+            <div class="tab-pane" id="tab3">
+              3
+              </div>
+            <div class="tab-pane" id="tab4">
+              4
+              </div>
+            <div class="tab-pane" id="tab5">
+              5
+              </div>
+            <div class="tab-pane" id="tab6">
+              6
+              </div>
+            <div class="tab-pane" id="tab7">
+              7
+              </div>
+            <ul class="pager wizard">
+              <li class="previous first" style="display:none;"><a href="#">First</a></li>
+              <li class="previous"><a href="#">Previous</a></li>
+              <li class="next last" style="display:none;"><a href="#">Last</a></li>
+                <li class="next"><a href="#">Next</a></li>
+            </ul>
+          </div>  
       </div>
+    </div>
 
-  </div><!-- /.row  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js" type="text/javascript"></script>-->
-
-
+</div><!-- /.row  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js" type="text/javascript"></script>-->
 
 <script type="text/javascript">
   
@@ -109,7 +105,7 @@
         columns: 12
       });
   });
-  
+
 </script>
 
 {% endblock %}
