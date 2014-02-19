@@ -1,6 +1,16 @@
 
 {% extends "platform/views/templates/base.html" %}
 
+{% block header-css %}
+
+  <link href="css/jquery.gridly.css" rel="stylesheet" type="text/css" />
+
+  <style type="text/css">
+
+  </style>
+
+{% endblock %}
+
 {% block content %}
 
   <div class="row">
@@ -19,9 +29,9 @@
               <div class="navbar-inner">
                 <div class="container text-center">
                   <ul>
-                    <li><a href="#tab1" data-toggle="tab"> Passo 1 </a></li>
-                    <li><a href="#tab2" data-toggle="tab"> Passo 2 </a></li>
-                    <li><a href="#tab3" data-toggle="tab"> Passo 3 </a></li>
+                    <li><a href="#tab1" data-toggle="tab" class="btn btn-lg"> Passo 1 </a></li>
+                    <li><a href="#tab2" data-toggle="tab" class="btn btn-lg"> Passo 2 </a></li>
+                    <li><a href="#tab3" data-toggle="tab" class="btn btn-lg"> Passo 3 </a></li>
                   </ul>
                 </div>
               </div>
@@ -36,11 +46,12 @@
 
                 <div class="tab-pane" id="tab1">
                     <h3 class="page-header text-left">Atividades</h3>
+                    <a class="add button fa fa-plus" href="#"> Nova Atividade</a>
+                    <br />
                     <div class="gridly">
-                      <div class="brick small"></div>
-                      <div class="brick large"></div>
-                      <div class="brick small"></div>
-                      <div class="brick large"></div>
+                      <div class="brick small"><a class="delete fa fa-times fa-lg" href="#"></a></div>
+                      <div class="brick small"><a class="delete fa fa-times fa-lg" href="#"></a></div>
+                      <div class="brick small"><a class="delete fa fa-times fa-lg" href="#"></a></div>
                     </div>
                 </div>
 
@@ -70,14 +81,14 @@
         </div>
       </div>
 
-  </div><!-- /.row  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js" type="text/javascript"></script>-->
+  </div><!-- /.row  -->
 
 {% endblock %}
 
 
 {% block footer-js %}
-
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js" type="text/javascript"></script>
+  
+  <!--<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js" type="text/javascript"></script> -->
   <script src="js/jquery.bootstrap.wizard.min.js"></script>
   <script src="js/jquery.gridly.js" type="text/javascript"></script>
 
@@ -85,32 +96,24 @@
     
     $(document).ready(function() {
 
-        $('#rootwizard').bootstrapWizard({onNext: function(tab, navigation, index) {
-          if(index==2) {
-            // Make sure we entered the name
-            if(!$('#name').val()) {
-              alert('You must enter your name');
-              $('#name').focus();
-              return false;
-            }
-          }
-          
-          // Set the name for the next tab
-          $('#tab3').html('Hello, ' + $('#name').val());
-          
-        }, onTabShow: function(tab, navigation, index) {
-          var $total = navigation.find('li').length;
-          var $current = index+1;
-          var $percent = ($current/$total) * 100;
-          $('#rootwizard').find('.progress-bar').css({width:$percent+'%'});
-        }});
+        $('#rootwizard').bootstrapWizard({
 
-        $('.gridly').gridly({
-          base: 60, // px 
-          gutter: 20, // px
-          columns: 12
+          onNext: function(tab, navigation, index) {
+            //validation if needed
+          }, 
+
+          onTabShow: function(tab, navigation, index) {
+         
+            var $total = navigation.find('li').length;
+            var $current = index+1;
+            var $percent = ($current/$total) * 100;
+            $('#rootwizard').find('.progress-bar').css({width:$percent+'%'});
+          }
         });
+
+        $('.gridly').gridly();
     });
 
   </script>
+
 {% endblock %}

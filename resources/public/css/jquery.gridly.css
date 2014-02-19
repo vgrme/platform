@@ -1,10 +1,69 @@
 /* jQuery Gridly
- * Copyright 2013 Kevin Sylvestre
- *  1.1.4
+ * Copyright 2013 Kevin Sylvestre + Felipe Forbeck
+ * 1.2.3
  */
+
+
+/* Gridly */
+
+.gridly {
+  position: relative;
+  width: 100%;
+}
+
+.brick {
+	background-color: #C2C2C2;
+	opacity: 1;
+	cursor: pointer;
+	position: relative; 
+}
+
+.brick.small {
+	width: 170px;
+	height: 170px;
+}
+
+.brick.medium {
+	width: 210px;
+	height: 210px;
+}
+
+.brick.large {
+	width: 300px;
+	height: 300px;
+}
+
+.brick .delete {
+	display: block;
+	color: white;
+	background: rgba(255, 255, 255, 0.2);
+	width: 40px;
+	height: 40px;
+	top: 0;
+	right: 0;
+	position: absolute;
+	text-align: center;
+	line-height: 40px; 
+}
+
+.brick .dragging {
+  opacity: 0.8; 
+}
+
+.gridly {
+      position: relative;
+      height: auto;
+      width: auto;
+      overflow: auto;
+}
+
 .gridly, .gridly > :not(.dragging) {
-  -webkit-transition: all 0.4s ease-in-out;
-  -moz-transition: all 0.4s ease-in-out;
-  transition: all 0.4s ease-in-out; }
+	-webkit-transition: all 0.4s ease-in-out;
+	-moz-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out; 
+}
+
 .gridly .dragging {
-  z-index: 800; }
+	z-index: 800; 
+}
+
