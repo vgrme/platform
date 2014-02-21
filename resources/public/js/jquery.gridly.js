@@ -165,8 +165,8 @@ Copyright 2013 Kevin Sylvestre
   Gridly = (function() {
     Gridly.settings = {
       base: 60,
-      gutter: 20,
-      columns: 12,
+      gutter: 10,
+      columns: 14,
       draggable: {
         zIndex: 800,
         selector: '> *'
@@ -465,10 +465,10 @@ Copyright 2013 Kevin Sylvestre
     $(function () {
        
         var brick;
-        brick = "<div class='brick small'><a class='delete fa fa-times fa-lg'></a></div>";
+        brick = "<div class='brick large'><a class='delete fa fa-times fa-lg'></a><a class='activity'>Escolha um modelo</a></div>";
 
         $(document).on("click", ".gridly .brick", function (event) {
-            var $this, size;
+            /* var $this, size;
             event.preventDefault();
             event.stopPropagation();
 
@@ -490,7 +490,7 @@ Copyright 2013 Kevin Sylvestre
             $this.data('width', size);
             $this.data('height', size);
 
-            return $('.gridly').gridly('layout');
+            return $('.gridly').gridly('layout'); */
         });
 
         $(document).on("click", ".gridly .delete", function (event) {

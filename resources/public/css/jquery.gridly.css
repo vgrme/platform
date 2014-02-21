@@ -9,6 +9,7 @@
 .gridly {
   position: relative;
   width: 100%;
+  overflow: auto;
 }
 
 .brick {
@@ -46,16 +47,22 @@
 	line-height: 40px; 
 }
 
+.brick .activity {
+	display: block;
+	color: white;
+	background: transparent;
+	width: 100%;
+	top: 130px;
+	position: absolute;
+	text-align: center;
+	line-height: 40px; 
+	text-decoration: underline;
+}
+
 .brick .dragging {
   opacity: 0.8; 
 }
 
-.gridly {
-      position: relative;
-      height: auto;
-      width: auto;
-      overflow: auto;
-}
 
 .gridly, .gridly > :not(.dragging) {
 	-webkit-transition: all 0.4s ease-in-out;
