@@ -475,13 +475,10 @@ Copyright 2013 Kevin Sylvestre
             $this.toggleClass('large');
 
             if ($this.hasClass('small')) {
-                size = 170;
-            }
-            if ($this.hasClass('medium')) {
-                size = 210;
+                size = 130;
             }
             if ($this.hasClass('large')) {
-                size = 300;
+                size = 210;
             }
 
             $this.data('width', size);
