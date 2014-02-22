@@ -465,7 +465,7 @@ Copyright 2013 Kevin Sylvestre
     $(function () {
        
         var brick;
-        brick = "<div class='brick large'><a class='delete fa fa-times fa-lg'></a><a class='activity' data-toggle='modal' href='#responsive'>Escolha um modelo</a></div>";
+        brick = "<div class='brick large'><a class='delete fa fa-times fa-lg'></a><a class='activity' data-toggle='modal' href='#select-activity'>Escolha um modelo</a></div>";
 
         $(document).on("click", ".gridly .brick", function (event) {
             /* var $this, size;

@@ -160,3 +160,9 @@ white-space: normal;
 padding-left: 15px !important;
 padding-right: 15px !important;
 }
+
+.thumbnail > img {
+  border: none;
+  background-color: #F5F3F3;
+  height: 220px;
+}

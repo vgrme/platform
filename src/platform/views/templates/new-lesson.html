@@ -49,7 +49,7 @@
                       <div class="gridly" class="">
                         <div class="brick large">
                           <a class="delete fa fa-times fa-lg" href="#"></a>
-                          <a class="activity" data-toggle="modal" href="#responsive">Escolha um modelo</a>
+                          <a class="activity" data-toggle="modal" href="#select-activity">Escolha um modelo</a>
                        </div>
                       </div>
                     </div>
@@ -81,47 +81,176 @@
         </div>
       </div>
 
-      <!-- Activity Modal Panel -->
-
-      <div id="responsive" class="modal fade" data-backdrop="static" tabindex="-1" data-width="760" style="display: none;">
-          
+      <div id="select-activity" class="modal fade" data-backdrop="static" tabindex="-1" data-width="760" style="display: none;">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h4 class="modal-title">Selecione um de nossos modelos de atividades :)</h4>
+            <h4 class="modal-title">Selecione um modelo de atividade</h4>
           </div>
 
           <div class="modal-body">
             <div class="row">
-                <div class="col-md-6">
-                  <div class="list-group">
-                    <a href="#" class="list-group-item active">Questões de Múltipla Escolha</a>
-                    <a href="#" class="list-group-item">QueDiscursiva</a>
-                    <a href="#" class="list-group-item">Relacione</a>
-                    <a href="#" class="list-group-item">Vídeo</a>
-                    <a href="#" class="list-group-item">Texto</a>
-                  </div>
+              <div class="col-md-6">
+                <div class="list-group">
+                  <a href="#tumb1" data-toggle="tab" class="list-group-item active">1. Múltipla Escolha</a>
+                  <a href="#tumb2" data-toggle="tab" class="list-group-item">2. Discursivas</a>
+                  <a href="#tumb3" data-toggle="tab" class="list-group-item">3. Certo ou Errado</a>
+                  <a href="#tumb4" data-toggle="tab" class="list-group-item">4. Relacionando Itens</a>
+                  <a href="#tumb5" data-toggle="tab" class="list-group-item">5. Leitura de Textos</a>
+                  <a href="#tumb6" data-toggle="tab" class="list-group-item">6. Produção de Textos</a>
+                  <a href="#tumb7" data-toggle="tab" class="list-group-item">7. Produção de Diálogos</a>
+                  <a href="#tumb8" data-toggle="tab" class="list-group-item">8. Apresentações em Slides</a>
+                  <a href="#tumb9" data-toggle="tab" class="list-group-item">9. Vídeo</a>
                 </div>
-                <div class="col-md-6">
-                  <div class="row">
-                    <div class="col-sm-6 col-md-4">
+              </div>
+              <div class="col-md-6">
+                  <div class="tab-content">
+                    <div class="tab-pane active" id="tumb1">
                       <div class="thumbnail">
-                        <img src="img/multiple-choice.jpg"  alt="ActivitySample"> </img>
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE1MCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjE5cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MzAweDIwMDwvdGV4dD48L3N2Zz4=" alt="300x220"> </img>
                         <div class="caption">
-                          <h3>Thumbnail label</h3>
-                          <p>breve descrição</p>
-                          <p>
-                          <a href="#" class="btn btn-primary" role="button">Selecionar</a></p>
+                          <h3>Modelo 1</h3>
+                          <p class="small">
+                            Em resposta a uma questão de múltipla escolha é obrigatório escolher uma ou mais opções dentre as apresentadas. Existem dois tipos de configuração para as respostas: reposta única ou resposta múltipla.
+                          </p>
+                          <p><a href="#multiple-choice" data-toggle="modal" class="btn btn-primary" role="button">Selecionar</a></p>
                         </div>
                       </div>
                     </div>
-                </div>
-              </div>
-          </div>
+                
+                    <div class="tab-pane" id="tumb2">
+                      <div class="thumbnail">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE1MCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjE5cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MzAweDIwMDwvdGV4dD48L3N2Zz4="  alt="300x220" > </img>
+                        <div class="caption">
+                          <h3>Modelo 2</h3>
+                          <p class="small">Na questão discursiva, também conhecida como pergunta aberta ou dissertativa, é necessário que o aluno discurse sobre o que for perguntado. É válido lembrar que a correção nesse caso deverá ser realizada pelo próprio professor.</p>
+                          <p><a href="#right-wrong" data-toggle="modal" class="btn btn-primary" role="button">Selecionar</a></p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="tab-pane" id="tumb3">
+                      <div class="thumbnail">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE1MCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjE5cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MzAweDIwMDwvdGV4dD48L3N2Zz4="  alt="300x220" > </img>
+                        <div class="caption">
+                          <h3>Modelo 3</h3>
+                          <p class="small">Indisponível no momento</p>
+                          <p><a href="#" class="btn btn-primary" role="button">Selecionar</a></p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="tab-pane" id="tumb4">
+                      <div class="thumbnail">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE1MCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjE5cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MzAweDIwMDwvdGV4dD48L3N2Zz4="  alt="300x220" > </img>
+                        <div class="caption">
+                          <h3>Modelo 4</h3>
+                          <p class="small">Indisponível no momento</p>
+                          <p><a href="#" class="btn btn-primary" role="button">Selecionar</a></p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="tab-pane" id="tumb5">
+                      <div class="thumbnail">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE1MCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjE5cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MzAweDIwMDwvdGV4dD48L3N2Zz4="  alt="300x220" > </img>
+                        <div class="caption">
+                          <h3>Modelo 5</h3>
+                          <p class="small">Indisponível no momento</p>
+                          <p><a href="#" class="btn btn-primary" role="button">Selecionar</a></p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="tab-pane" id="tumb6">
+                      <div class="thumbnail">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE1MCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjE5cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MzAweDIwMDwvdGV4dD48L3N2Zz4="  alt="300x220" > </img>
+                        <div class="caption">
+                          <h3>Modelo 6</h3>
+                          <p class="small">Indisponível no momento</p>
+                          <p><a href="#" class="btn btn-primary" role="button">Selecionar</a></p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="tab-pane" id="tumb7">
+                      <div class="thumbnail">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE1MCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjE5cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MzAweDIwMDwvdGV4dD48L3N2Zz4="  alt="300x220" > </img>
+                        <div class="caption">
+                          <h3>Modelo 7</h3>
+                          <p class="small">Indisponível no momento</p>
+                          <p><a href="#" class="btn btn-primary" role="button">Selecionar</a></p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="tab-pane" id="tumb8">
+                      <div class="thumbnail">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE1MCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjE5cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MzAweDIwMDwvdGV4dD48L3N2Zz4="  alt="300x220" > </img>
+                        <div class="caption">
+                          <h3>Modelo 8</h3>
+                          <p class="small">Indisponível no momento</p>
+                          <p><a href="#" class="btn btn-primary" role="button">Selecionar</a></p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="tab-pane" id="tumb9">
+                      <div class="thumbnail">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE1MCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjE5cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MzAweDIwMDwvdGV4dD48L3N2Zz4="  alt="300x220" > </img>
+                        <div class="caption">
+                          <h3>Modelo 9</h3>
+                          <p class="small">Indisponível no momento</p>
+                          <p><a href="#" class="btn btn-primary" role="button">Selecionar</a></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div> <!-- tab-content activity -->
+              </div> <!-- col-md-6 -->
+            </div> <!-- row -->
+          </div> <!-- modal body -->
 
           <div class="modal-footer">
             <a href="#" data-dismiss="modal" class="btn">Fechar</a>
           </div>
-      </div> <!-- /Activity Modal Panel -->
+      </div> <!-- / Activity Modal Panel -->
+
+      <div id="multiple-choice" class="modal fade" data-backdrop="static" tabindex="-1" data-width="760" style="display: none;">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title">Múltipla Escolha</h4>
+          </div>
+
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-12">
+              asdasd
+              </div>
+            </div><!-- /.row  -->
+          </div> <!-- /.modal=body  -->
+
+          <div class="modal-footer">
+            <a href="#" data-dismiss="modal" class="btn">Fechar</a>
+          </div>
+       </div> <!-- / Create Multiple Choice Modal Panel -->
+
+       <div id="right-wrong" class="modal fade" data-backdrop="static" tabindex="-1" data-width="760" style="display: none;">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title">Certo ou Errado</h4>
+          </div>
+
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-12">
+              dfgdfg
+              </div>
+            </div><!-- /.row  -->
+          </div> <!-- /.modal=body  -->
+
+          <div class="modal-footer">
+            <a href="#" data-dismiss="modal" class="btn">Fechar</a>
+          </div>
+       </div> <!-- / Create Multiple Choice Modal Panel -->
 
   </div><!-- /.row  -->
 
