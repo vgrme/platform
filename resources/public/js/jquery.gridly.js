@@ -463,9 +463,6 @@ Copyright 2013 Kevin Sylvestre
 
 (function () {
     $(function () {
-       
-        var brick;
-        brick = "<div class='brick large'><a class='delete fa fa-times fa-lg'></a><a class='activity' data-toggle='modal' href='#%MACRO_HREF%'>Editar</a></div>";
 
         $(document).on("click", ".gridly .brick", function (event) {
             /* var $this, size;
@@ -509,8 +506,10 @@ Copyright 2013 Kevin Sylvestre
             $this = $(this);
 
             var href = "modal-" + $this.attr('id');
+            var text = $this.attr('alt');
 
-            brick = brick.replace("%MACRO_HREF%", href);
+            var brick;
+            brick = "<div class='brick large'><a class='delete fa fa-times fa-lg'></a><a class='activity' data-toggle='modal' href='#"+href+"'>"+text+"</a></div>";
 
             $('.gridly').append(brick);
 

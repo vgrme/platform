@@ -17,7 +17,6 @@
           <li class="{{new-lesson-selected}}"><i class="fa fa-file"></i> Nova Aula</li>
         </ol>
      
-
         <h2 class="page-header text-center">Criando sua aula</h2>
 
         <div id="rootwizard">
@@ -108,7 +107,7 @@
                           <p class="small">
                             Em resposta a uma questão de múltipla escolha é obrigatório escolher uma ou mais opções dentre as apresentadas. Existem dois tipos de configuração para as respostas: reposta única ou resposta múltipla.
                           </p>
-                          <p><a href="#" data-dismiss="modal" class="add btn btn-primary" role="button" id="multiple-choice">Selecionar</a></p>
+                          <p><a href="#" data-dismiss="modal" class="add btn btn-primary" role="button" id="multiple-choice" alt="Múltipla Escolha">Selecionar</a></p>
                         </div>
                       </div>
                     </div>
@@ -119,7 +118,7 @@
                         <div class="caption">
                           <h3>Modelo 2</h3>
                           <p class="small">Na questão discursiva, também conhecida como pergunta aberta ou dissertativa, é necessário que o aluno discurse sobre o que for perguntado. É válido lembrar que a correção nesse caso deverá ser realizada pelo próprio professor.</p>
-                          <p><a href="#right-wrong" data-toggle="modal" class="btn btn-primary" role="button">Selecionar</a></p>
+                          <p><a href="#" data-dismiss="modal" class="add btn btn-primary" role="button" id="open-question" alt="Questão Discursiva">Selecionar</a></p>
                         </div>
                       </div>
                     </div>
@@ -130,7 +129,7 @@
                         <div class="caption">
                           <h3>Modelo 3</h3>
                           <p class="small">Indisponível no momento</p>
-                          <p><a href="#" class="btn btn-primary" role="button">Selecionar</a></p>
+                          <p><a href="#" data-dismiss="modal" class="add btn btn-primary" role="button" id="none">Selecionar</a></p>
                         </div>
                       </div>
                     </div>
@@ -141,7 +140,7 @@
                         <div class="caption">
                           <h3>Modelo 4</h3>
                           <p class="small">Indisponível no momento</p>
-                          <p><a href="#" class="btn btn-primary" role="button">Selecionar</a></p>
+                          <p><a href="#" data-dismiss="modal" class="add btn btn-primary" role="button" id="none">Selecionar</a></p>
                         </div>
                       </div>
                     </div>
@@ -152,7 +151,7 @@
                         <div class="caption">
                           <h3>Modelo 5</h3>
                           <p class="small">Indisponível no momento</p>
-                          <p><a href="#" class="btn btn-primary" role="button">Selecionar</a></p>
+                          <p><a href="#" data-dismiss="modal" class="add btn btn-primary" role="button" id="none">Selecionar</a></p>
                         </div>
                       </div>
                     </div>
@@ -163,7 +162,7 @@
                         <div class="caption">
                           <h3>Modelo 6</h3>
                           <p class="small">Indisponível no momento</p>
-                          <p><a href="#" class="btn btn-primary" role="button">Selecionar</a></p>
+                          <p><a href="#" data-dismiss="modal" class="add btn btn-primary" role="button" id="none">Selecionar</a></p>
                         </div>
                       </div>
                     </div>
@@ -174,7 +173,7 @@
                         <div class="caption">
                           <h3>Modelo 7</h3>
                           <p class="small">Indisponível no momento</p>
-                          <p><a href="#" class="btn btn-primary" role="button">Selecionar</a></p>
+                          <p><a href="#" data-dismiss="modal" class="add btn btn-primary" role="button" id="none">Selecionar</a></p>
                         </div>
                       </div>
                     </div>
@@ -185,7 +184,7 @@
                         <div class="caption">
                           <h3>Modelo 8</h3>
                           <p class="small">Indisponível no momento</p>
-                          <p><a href="#" class="btn btn-primary" role="button">Selecionar</a></p>
+                          <p><a href="#" data-dismiss="modal" class="add btn btn-primary" role="button" id="none">Selecionar</a></p>
                         </div>
                       </div>
                     </div>
@@ -196,7 +195,7 @@
                         <div class="caption">
                           <h3>Modelo 9</h3>
                           <p class="small">Indisponível no momento</p>
-                          <p><a href="#" class="btn btn-primary" role="button">Selecionar</a></p>
+                          <p><a href="#" data-dismiss="modal" class="add btn btn-primary" role="button" id="none">Selecionar</a></p>
                         </div>
                       </div>
                     </div>
@@ -229,7 +228,7 @@
           </div>
        </div> <!-- / Create Multiple Choice Modal Panel -->
 
-       <div id="right-wrong" class="modal fade" data-backdrop="static" tabindex="-1" data-width="760" style="display: none;">
+       <div id="modal-open-question" class="modal fade" data-backdrop="static" tabindex="-1" data-width="760" style="display: none;">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             <h4 class="modal-title">Certo ou Errado</h4>
