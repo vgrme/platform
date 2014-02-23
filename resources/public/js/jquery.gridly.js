@@ -503,6 +503,7 @@ Copyright 2013 Kevin Sylvestre
             $this = $(this);
 
             var href = "modal-" + $this.attr('id');
+
             var text = $this.attr('alt');
 
             var brick;
