@@ -166,3 +166,54 @@ padding-right: 15px !important;
   background-color: #F5F3F3;
   height: 220px;
 }
+
+.quiz {
+  width: 100%
+}
+
+.quiz.question {
+  padding: 3px;
+}
+
+.quiz.answer {
+  padding-left: 5px;
+}
+
+.quiz .question .text {
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom:1px dashed gray;
+}
+
+.quiz .question .text:active {
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+}
+
+.quiz .question .number {
+  color: #686868;
+  text-align: center;
+  font-size: 30px;
+}
+
+.quiz .answer .text {
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom:1px dashed gray;
+}
+
+.quiz .answer .text:active {
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+}
+
+.quiz .answer .option {
+  color: #686868;
+  text-align: center;
+  font-size: 30px;
+}
+
