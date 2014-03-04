@@ -43,8 +43,8 @@
                 <div class="tab-pane" id="tab1">
                     <h3 class="page-header text-left">Atividades</h3>
                    
-                    <div class="col-lg-12">
-                      <a class="fa fa-plus" data-toggle="modal" href="#select-activity"> Nova Atividade</a>
+                    <div class="col-lg-12 text-center">
+                      <a class="btn btn-primary fa fa-plus" data-toggle="modal" href="#select-activity"> Nova Atividade</a>
                       <div class="gridly">
                       </div>
                     </div>
@@ -79,31 +79,45 @@
       <div id="select-activity" class="modal fade" data-backdrop="static" tabindex="-1" data-width="760" style="display: none;">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h4 class="modal-title">Selecione um modelo de atividade</h4>
+            <h4 class="modal-title">Selecione modelo de atividade</h4>
           </div>
 
           <div class="modal-body">
             <div class="row">
               <div class="col-md-6">
                 <div class="list-group">
-                  <a href="#tumb1" data-toggle="tab" class="list-group-item active">1. Múltipla Escolha</a>
-                  <a href="#tumb2" data-toggle="tab" class="list-group-item">2. Discursivas</a>
-                  <a href="#tumb3" data-toggle="tab" class="list-group-item">3. Certo ou Errado</a>
+                  <a href="#tumb1" data-toggle="tab" class="list-group-item active">1. Certo / Errado</a>
+                  <!-- 
+                  <a href="#tumb2" data-toggle="tab" class="list-group-item">2. Múltipla Escolha</a>
+                  <a href="#tumb3" data-toggle="tab" class="list-group-item">3. Discursivas</a>
                   <a href="#tumb4" data-toggle="tab" class="list-group-item">4. Relacionando Itens</a>
                   <a href="#tumb5" data-toggle="tab" class="list-group-item">5. Leitura de Textos</a>
                   <a href="#tumb6" data-toggle="tab" class="list-group-item">6. Produção de Textos</a>
                   <a href="#tumb7" data-toggle="tab" class="list-group-item">7. Produção de Diálogos</a>
                   <a href="#tumb8" data-toggle="tab" class="list-group-item">8. Apresentações em Slides</a>
-                  <a href="#tumb9" data-toggle="tab" class="list-group-item">9. Vídeo</a>
+                  <a href="#tumb9" data-toggle="tab" class="list-group-item">9. Vídeo</a> 
+                  -->
                 </div>
               </div>
               <div class="col-md-6">
                   <div class="tab-content">
+
                     <div class="tab-pane active" id="tumb1">
+                      <div class="thumbnail">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE1MCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjE5cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MzAweDIwMDwvdGV4dD48L3N2Zz4="  alt="300x220" > </img>
+                        <div class="caption">
+                          <h3>Modelo 1</h3>
+                          <p class="small">Envolve questões elaboradas com apenas duas alternativas: certo ou errado. Fica a critério do tutor indicar a resposta correta no momento da criação do questionáio. </p>
+                          <p><a href="#" data-dismiss="modal" class="add btn btn-primary" role="button" id="right-wrong" alt="Certo / Errado">Selecionar</a></p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="tab-pane" id="tumb2">
                       <div class="thumbnail">
                         <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE1MCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjE5cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MzAweDIwMDwvdGV4dD48L3N2Zz4=" alt="300x220"> </img>
                         <div class="caption">
-                          <h3>Modelo 1</h3>
+                          <h3>Modelo 2</h3>
                           <p class="small">
                             Em resposta a uma questão de múltipla escolha é obrigatório escolher uma ou mais opções dentre as apresentadas. Existem dois tipos de configuração para as respostas: reposta única ou resposta múltipla.
                           </p>
@@ -112,24 +126,13 @@
                       </div>
                     </div>
                 
-                    <div class="tab-pane" id="tumb2">
-                      <div class="thumbnail">
-                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE1MCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjE5cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MzAweDIwMDwvdGV4dD48L3N2Zz4="  alt="300x220" > </img>
-                        <div class="caption">
-                          <h3>Modelo 2</h3>
-                          <p class="small">Na questão discursiva, também conhecida como pergunta aberta ou dissertativa, é necessário que o aluno discurse sobre o que for perguntado. É válido lembrar que a correção nesse caso deverá ser realizada pelo próprio professor.</p>
-                          <p><a href="#" data-dismiss="modal" class="add btn btn-primary" role="button" id="open-question" alt="Questão Discursiva">Selecionar</a></p>
-                        </div>
-                      </div>
-                    </div>
-
                     <div class="tab-pane" id="tumb3">
                       <div class="thumbnail">
                         <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE1MCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjE5cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MzAweDIwMDwvdGV4dD48L3N2Zz4="  alt="300x220" > </img>
                         <div class="caption">
                           <h3>Modelo 3</h3>
-                          <p class="small">Indisponível no momento</p>
-                          <p><a href="#" data-dismiss="modal" class="add btn btn-primary" role="button" id="none">Selecionar</a></p>
+                          <p class="small">Na questão discursiva, também conhecida como pergunta aberta ou dissertativa, é necessário que o aluno discurse sobre o que for perguntado. É válido lembrar que a correção nesse caso deverá ser realizada pelo próprio professor.</p>
+                          <p><a href="#" data-dismiss="modal" class="add btn btn-primary" role="button" id="open-question" alt="Questão Discursiva">Selecionar</a></p>
                         </div>
                       </div>
                     </div>
@@ -209,10 +212,35 @@
           </div>
       </div> <!-- / Activity Modal Panel -->
 
+      <div id="modal-right-wrong" class="modal fade" data-backdrop="static" tabindex="-1" data-width="760" style="display: none;">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title">Atividade: Certo / Errado</h4>
+          </div>
+
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="quiz" id="quiz">
+                </div>
+              </div>
+            </div><!-- /.row  -->
+          </div> <!-- /.modal=body  -->
+
+          <div class="modal-footer text-right">
+            <div class="col-md-6 text-left">
+                <a href="#" class="add-right-wrong-box btn btn-primary fa fa-plus" role="button"> Nova questão</a>
+            </div>
+            <div class="col-md-6">
+               <a href="#" data-dismiss="modal" class="btn">Fechar</a>
+            </div>
+          </div>
+       </div> <!-- / end Right or Wrong Modal Panel -->
+
       <div id="modal-multiple-choice" class="modal fade" data-backdrop="static" tabindex="-1" data-width="760" style="display: none;">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h4 class="modal-title">Múltipla Escolha</h4>
+            <h4 class="modal-title">Atividade: Múltipla Escolha</h4>
           </div>
 
           <div class="modal-body">
@@ -248,7 +276,7 @@
        <div id="modal-open-question" class="modal fade" data-backdrop="static" tabindex="-1" data-width="760" style="display: none;">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h4 class="modal-title">Certo ou Errado</h4>
+            <h4 class="modal-title">Atividade: Questão Aberta</h4>
           </div>
 
           <div class="modal-body">
