@@ -3,8 +3,7 @@
 
 {% block header-css %}
 
-  <link href="css/jquery.gridly.css" rel="stylesheet" type="text/css" />
-
+ {% style "/css/jquery.gridly.css" %}
 
 {% endblock %}
 
@@ -300,10 +299,10 @@
 
 {% block footer-js %}
   
-  <script src="js/jquery.bootstrap.wizard.min.js" type="text/javascript"></script>
-  <script src="js/jquery.gridly.js" type="text/javascript"></script>
-  <script src="js/bootstrap-modalmanager.js" type="text/javascript"></script>
-  <script src="js/bootstrap-modal.js" type="text/javascript"></script>
+ {% script "/js/jquery.bootstrap.wizard.min.js" %}
+ {% script "/js/jquery.gridly.js" %}
+ {% script "/js/bootstrap-modalmanager.js" %}
+ {% script "/js/bootstrap-modal.js" %}
 
   <script type="text/javascript">
     

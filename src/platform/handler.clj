@@ -1,6 +1,6 @@
 (ns platform.handler
   (:require [compojure.core :refer [defroutes]]
-            [platform.routes.home :refer [home-routes]]
+            [platform.routes.app :refer :all]
             [platform.middleware :as middleware]
             [noir.util.middleware :refer [app-handler]]
             [compojure.route :as route]
@@ -9,7 +9,9 @@
             [selmer.parser :as parser]
             [environ.core :refer [env]]))
 
-(defroutes app-routes
+
+(defroutes
+  app-routes
   (route/resources "/")
   (route/not-found "Not Found"))
 
@@ -44,7 +46,7 @@
 
 (def app (app-handler
            ;; add your application routes here
-           [home-routes app-routes]
+           [geduca-routes app-routes]
            ;; add custom middleware here
            :middleware [middleware/template-error-page
                         middleware/log-request]

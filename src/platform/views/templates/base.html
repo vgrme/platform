@@ -10,15 +10,12 @@
 
     <title>Geduca.org - A Collaborative learning platform</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
-    <link href="css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css" />
-    <link href="css/bootstrap-modal.css" rel="stylesheet" type="text/css" />
-
-    <!-- Add custom CSS here -->
-    <link href="css/sb-admin.css" rel="stylesheet" type="text/css" />
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <!-- <link href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css" rel="stylesheet" type="text/css" /> -->
+    <!-- CSS -->
+    {% style "/css/bootstrap.css" %}
+    {% style "/css/bootstrap-modal-bs3patch.css" %}
+    {% style "/css/bootstrap-modal.css" %}
+    {% style "/css/sb-admin.css" %}
+    {% style "/font-awesome/css/font-awesome.min.css" %}
 
     {% block header-css %}
     {% endblock %}
@@ -42,7 +39,7 @@
 
           <a class="navbar-brand" href="{{servlet-context}}/">
              <picture>
-                  <img src="img/logo/geduca-org.png" class="img-responsive" alt="Geduca.org"> </img>
+                  <img class="img-responsive geduca-logo" alt="Geduca.org" src="{{servlet-context}}/img/logo/geduca-org.png"> </img>
               </picture>
           </a>
         </div>
@@ -109,10 +106,9 @@
     </div><!-- /#wrapper -->
 
     <!-- JavaScript jquery v2.0.2 -->
-
-    <script src="js/jquery.min.js" type="text/javascript"></script>
-    <script src="js/bootstrap.js" type="text/javascript"></script>
-    <script src="js/geduca.js" type="text/javascript"></script>
+    {% script "/js/jquery.min.js" %}
+    {% script "/js/bootstrap.js" %}
+    {% script "/js/geduca.js" %}
 
     <!-- 
     <script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js" type="text/javascript"></script>
@@ -121,6 +117,9 @@
 
     <script type="text/javascript">
       var context = "{{servlet-context}}";
+      $(function() {
+        $("#{{selected-page}}").addClass("active");
+      });
     </script>
 
     {% block footer-js %}
