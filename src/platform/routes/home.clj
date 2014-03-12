@@ -4,8 +4,8 @@
             [platform.util :as util]))
 
 
-(defn dashboard []
-  (layout/render "dashboard.html" ))
+(defn home []
+  (layout/render "home.html" ))
 
 (defn classes []
   (layout/render "class/classes.html"))
@@ -21,7 +21,7 @@
 
 
 (defroutes home-routes
-  (GET "/" [] (dashboard))
+  (GET "/" [] (home))
   (GET "/lessons" [] (lessons))
   (GET "/lessons/new" [] (new-lesson))
   (GET "/classes" [] (classes))

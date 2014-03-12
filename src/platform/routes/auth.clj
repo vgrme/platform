@@ -2,6 +2,7 @@
   (:use compojure.core)
   (:require [platform.views.layout :as layout]
             [noir.session :as session]
+            [noir.cookies :as cookies]
             [noir.response :as resp]
             [noir.validation :as vali]
             [noir.util.crypt :as crypt]
@@ -17,12 +18,14 @@
   (not (vali/errors? :id :pass :pass1)))
 
 (defn register [& [id]]
-  (layout/render
-    "registration.html"
+  (layout/render "registration.html"
     {:id id
      :id-error (vali/on-error :id first)
      :pass-error (vali/on-error :pass first)
      :pass1-error (vali/on-error :pass1 first)}))
+
+(defn login []
+  (layout/render "login.html"))
 
 (defn handle-registration [id pass pass1]
   (if (valid? id pass pass1)
@@ -30,6 +33,7 @@
       (do
         (db/create-user {:id id :pass (crypt/encrypt pass)})
         (session/put! :user-id id)
+        (cookies/put! :user-id id)
         (resp/redirect "/"))
       (catch Exception ex
         (vali/rule false [:id (.getMessage ex)])
@@ -53,11 +57,14 @@
 
 (defn logout []
   (session/clear!)
-  (resp/redirect "/"))
+  (resp/redirect "/login"))
+
+(defn is-logged []
+  (nil? (session/get 
+              (cookies/get :user-id))))
 
 (defroutes auth-routes
-  (GET "/register" []
-       (register))
+  (GET "/register" [] (register))
 
   (POST "/register" [id pass pass1]
         (handle-registration id pass pass1))
@@ -66,8 +73,8 @@
   
   (POST "/update-profile" {params :params} (update-profile params))
   
-  (POST "/login" [id pass]
-        (handle-login id pass))
+  (GET "/login" [] (login))
+  
+  (POST "/login" [id pass] (handle-login id pass))
 
-  (GET "/logout" []
-        (logout)))
+  (GET "/logout" [] (logout)))

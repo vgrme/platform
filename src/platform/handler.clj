@@ -1,6 +1,5 @@
 (ns platform.handler
   (:require [compojure.core :refer [defroutes]]
-            [platform.routes.home :refer [home-routes]]
             [platform.middleware :as middleware]
             [noir.util.middleware :refer [app-handler]]
             [compojure.route :as route]
@@ -8,10 +7,10 @@
             [taoensso.timbre.appenders.rotor :as rotor]
             [selmer.parser :as parser]
             [environ.core :refer [env]]
-            [platform.routes.auth :refer [auth-routes]]))
+            [platform.routes.auth :refer [auth-routes]]
+            [platform.routes.home :refer [home-routes]]))
 
-(defroutes
-  app-routes
+(defroutes app-routes
   (route/resources "/")
   (route/not-found "Not Found"))
 
