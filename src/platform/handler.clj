@@ -1,14 +1,14 @@
 (ns platform.handler
   (:require [compojure.core :refer [defroutes]]
-            [platform.routes.app :refer :all]
+            [platform.routes.home :refer [home-routes]]
             [platform.middleware :as middleware]
             [noir.util.middleware :refer [app-handler]]
             [compojure.route :as route]
             [taoensso.timbre :as timbre]
             [taoensso.timbre.appenders.rotor :as rotor]
             [selmer.parser :as parser]
-            [environ.core :refer [env]]))
-
+            [environ.core :refer [env]]
+            [platform.routes.auth :refer [auth-routes]]))
 
 (defroutes
   app-routes
@@ -23,36 +23,30 @@
   []
   (timbre/set-config!
     [:appenders :rotor]
-    {:min-level :info
-     :enabled? true
-     :async? false ; should be always false for rotor
-     :max-message-per-msecs nil
+    {:min-level :info,
+     :enabled? true,
+     :async? false,
+     :max-message-per-msecs nil,
      :fn rotor/appender-fn})
-
   (timbre/set-config!
     [:shared-appender-config :rotor]
-    {:path "platform.log" :max-size (* 512 1024) :backlog 10})
-
+    {:path "geduca_platform.log", :max-size (* 512 1024), :backlog 10})
   (if (env :dev) (parser/cache-off!))
-  (timbre/info "platform started successfully"))
+  (timbre/info "geduca-platform started successfully"))
 
 (defn destroy
   "destroy will be called when your application
    shuts down, put any clean up code here"
   []
-  (timbre/info "platform is shutting down..."))
+  (timbre/info "geduca-platform is shutting down..."))
 
+(def app
+ (app-handler
+   [auth-routes home-routes app-routes]
+   :middleware
+   [middleware/template-error-page middleware/log-request]
+   :access-rules
+   []
+   :formats
+   [:json-kw :edn]))
 
-
-(def app (app-handler
-           ;; add your application routes here
-           [geduca-routes app-routes]
-           ;; add custom middleware here
-           :middleware [middleware/template-error-page
-                        middleware/log-request]
-           ;; add access rules here
-           :access-rules []
-           ;; serialize/deserialize the following data formats
-           ;; available formats:
-           ;; :json :json-kw :yaml :yaml-kw :edn :yaml-in-html
-           :formats [:json-kw :edn]))
