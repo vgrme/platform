@@ -157,6 +157,12 @@ padding-right: 15px !important;
   height: 220px;
 }
 
+/* Breadcrumb */
+
+.selected {
+  color: #949090;
+}
+
 
 /* Quiz */
 

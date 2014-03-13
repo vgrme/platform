@@ -1,0 +1,52 @@
+{% extends "platform/views/templates/base.html" %}
+
+{% block header-css %}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="row">
+
+        <ol class="breadcrumb">
+          <li><a href="{{servlet-context}}/lessons"><i class="fa fa-tasks"></i> Aulas</a></li>
+          <li><a href="{{servlet-context}}/lessons/new"><i class="fa fa-file"></i> Nova Aula</a></li>
+          <li class="selected"><i class="fa fa-file"></i> Nova Atividade</li>
+        </ol>
+     
+        <h2 class="page-header text-center">Criando sua Atividade Certo / Errado</h2>
+
+        <form action="{{servlet-context}}/activity/new" class="form" method="POST">
+          <div class="quiz" id="quiz">
+          </div>
+          
+          <h3 class="page-footer"></h3>
+          <div class="row">
+            <div class="col-md-3 text-left">
+              <input class="add-right-wrong-box btn btn-lg btn-block btn-primary" type="button" value="Nova questão" />
+            </div>
+            <div class="col-md-3 col-md-offset-6 text-right">
+              <input class="btn btn-lg btn-success btn-block" type="submit" value="Feito"/>
+            </div>
+          </div>
+        </form> 
+
+  </div><!-- /.row  -->
+
+{% endblock %}
+
+
+{% block footer-js %}
+
+<script type="text/javascript">
+    
+    $(document).ready(function() {
+
+        $('.add-right-wrong-box').click();
+
+    });
+
+  </script>
+
+  
+{% endblock %}

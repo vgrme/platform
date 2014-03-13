@@ -507,7 +507,7 @@ Copyright 2013 Kevin Sylvestre
             var text = $this.attr('alt');
 
             var brick;
-            brick = "<div class='brick large'><a class='delete fa fa-times fa-lg'></a><a class='activity' data-toggle='modal' href='#"+href+"'>"+text+"</a></div>";
+            brick = "<div class='brick large'><a class='delete fa fa-times fa-lg'></a><a class='activity' href='/activity/new'>"+text+"</a></div>";
 
             $('.gridly').append(brick);
 

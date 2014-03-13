@@ -33,7 +33,7 @@
       (do
         (db/create-user {:id id :pass (crypt/encrypt pass)})
         (session/put! :user-id id)
-        (cookies/put! :user-id id)
+        (cookies/put! :geduca-user-id (str id))
         (resp/redirect "/"))
       (catch Exception ex
         (vali/rule false [:id (.getMessage ex)])
@@ -59,11 +59,12 @@
   (session/clear!)
   (resp/redirect "/login"))
 
-(defn is-logged []
-  (nil? (session/get 
-              (cookies/get :user-id))))
+(defn is-logged [] 
+  (nil? (session/get (cookies/get :geduca-user-id))))
 
 (defroutes auth-routes
+  (GET "/" [] (resp/redirect (if (is-logged) "/home" "/login")))
+   
   (GET "/register" [] (register))
 
   (POST "/register" [id pass pass1]

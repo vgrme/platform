@@ -30,7 +30,7 @@
 	                      "<div class='col-md-1 number'>" +
 	                        "<label id='number-"+totalQuestions+"'>" + totalQuestions + "</label>" +
 	                      "</div>" +
-	                      "<textarea class='col-md-10 question text' placeholder='Digite aqui sua pergunta...'>" +
+	                      "<textarea id='txt-"+totalQuestions+"'class='col-md-10 question text' placeholder='Digite aqui sua pergunta...'>" +
 	                      "</textarea>" +
 	                      "<a href='#' class='col-md-1 remove remove-right-wrong-box btn fa fa-times-circle' role='button'></a>"+
 	                    "</div>" +
@@ -54,6 +54,8 @@
 	                "</div>";
 
         $('.quiz').append(newQuestion);
+
+        $(".txt_" + totalQuestions).focus();
 
     });
 
