@@ -9,12 +9,12 @@
   <div class="row">
 
         <ol class="breadcrumb">
-          <li><a href="{{servlet-context}}/lessons"><i class="fa fa-tasks"></i> Aulas</a></li>
-          <li><a href="{{servlet-context}}/lessons/new"><i class="fa fa-file"></i> Nova Aula</a></li>
-          <li class="selected"><i class="fa fa-file"></i> Nova Atividade</li>
+          <li><a href="{{servlet-context}}/lessons"><i class="fa fa-tasks"></i> {{bc_lessons}}</a></li>
+          <li><a href="{{servlet-context}}/lessons/new"><i class="fa fa-file"></i> {{bc_new_lesson}}</a></li>
+          <li class="selected"><i class="fa fa-file"></i> {{bc_new_act}}</li>
         </ol>
      
-        <h2 class="page-header text-center">Criando sua Atividade Certo / Errado</h2>
+        <h2 class="page-header text-center">{{title}}</h2>
 
         <form action="{{servlet-context}}/activity/new" class="form" method="POST">
           <div class="quiz" id="quiz">
@@ -23,10 +23,10 @@
           <h3 class="page-footer"></h3>
           <div class="row">
             <div class="col-md-3 text-left">
-              <input class="add-right-wrong-box btn btn-lg btn-block btn-primary" type="button" value="Nova questão" />
+              <input class="add-right-wrong-box btn btn-lg btn-block btn-primary" type="button" value="{{btn_add}}" />
             </div>
             <div class="col-md-3 col-md-offset-6 text-right">
-              <input class="btn btn-lg btn-success btn-block" type="submit" value="Feito"/>
+              <input class="btn btn-lg btn-success btn-block" type="submit" value="{{btn_done}}"/>
             </div>
           </div>
         </form> 

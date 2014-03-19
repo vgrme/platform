@@ -465,26 +465,14 @@ Copyright 2013 Kevin Sylvestre
     $(function () {
 
         $(document).on("click", ".gridly .brick", function (event) {
-            /* var $this, size;
+           
+           /* var $this;
             event.preventDefault();
             event.stopPropagation();
 
             $this = $(this);
-            $this.toggleClass('small');
-            $this.toggleClass('medium');
-            $this.toggleClass('large');
-
-            if ($this.hasClass('small')) {
-                size = 130;
-            }
-            if ($this.hasClass('large')) {
-                size = 210;
-            }
-
-            $this.data('width', size);
-            $this.data('height', size);
-
             return $('.gridly').gridly('layout'); */
+
         });
 
         $(document).on("click", ".gridly .delete", function (event) {

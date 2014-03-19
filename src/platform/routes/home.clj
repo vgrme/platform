@@ -21,7 +21,15 @@
   (layout/render "lesson/new-lesson.html"))
 
 (defn view-activity []
-  (layout/render "activity/right-wrong-quiz.html"))
+  (layout/render 
+    "activity/right-wrong-quiz.html" 
+    {
+     :bc_lessons "Aulas"
+     :bc_new_lesson "Nova aula"
+     :bc_new_act "Nova atividade"
+     :title "Criando sua Atividade Certo / Errado"
+     :btn_add "Nova Questão"
+     :btn_done "Feito"}))
 
 (defn new-activity [] 
   (resp/redirect "/lessons/new"))
