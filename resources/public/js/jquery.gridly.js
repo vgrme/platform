@@ -490,12 +490,12 @@ Copyright 2013 Kevin Sylvestre
 
             $this = $(this);
 
-            var href = "modal-" + $this.attr('id');
+            var quiz_type = $this.attr('id');
 
             var text = $this.attr('alt');
 
             var brick;
-            brick = "<div class='brick large'><a class='delete fa fa-times fa-lg'></a><a class='activity' href='/activity/new'>"+text+"</a></div>";
+            brick = "<div class='brick large'><a class='delete fa fa-times fa-lg'></a><a class='activity' href='/activity/new/"+quiz_type+"'>"+text+"</a></div>";
 
             $('.gridly').append(brick);
 

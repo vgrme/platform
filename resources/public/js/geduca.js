@@ -25,7 +25,7 @@
     	totalQuestions++;
 
     	var newQuestion;
-      	newQuestion = "<div class='box-question'>" +
+      	newQuestion = "<div class='right-wrong box-question'>" +
 	      				"<div class='question'>" +
 	                      "<div class='col-md-1 number'>" +
 	                        "<label id='number-"+totalQuestions+"'>" + totalQuestions + "</label>" +
@@ -52,6 +52,48 @@
 	                    "</div>" +
 	                  "</div>" +
 	                "</div>";
+
+        $('.quiz').append(newQuestion);
+
+        $(".txt_" + totalQuestions).focus();
+
+    });
+
+     $(document).on("click", ".add-judge-image-box", function (event) {
+        $this = $(this);
+
+        var totalQuestions;
+        totalQuestions = $('#quiz').children().length;
+        totalQuestions++;
+
+        var newQuestion;
+        newQuestion = "<div class='judge-image box-question'>" +
+                        "<div class='question'>" +
+                          "<div class='col-md-1 number'>" +
+                            "<label id='number-"+totalQuestions+"'>" + totalQuestions + "</label>" +
+                          "</div>" +
+                          "<textarea id='txt-"+totalQuestions+"'class='col-md-10 question text' placeholder='Digite aqui sua pergunta...'>" +
+                          "</textarea>" +
+                          "<a href='#' class='col-md-1 remove remove-right-wrong-box btn fa fa-times-circle' role='button'></a>"+
+                        "</div>" +
+                        "<div class='answer'>" +
+                          "<div class='col-md-11 option'>" +
+                            "<label class='col-md-2 btn option'>" +
+                              "<input type='radio' name='mode'>" + " C " +
+                            "</label>" +
+                           "<textarea class='col-md-9 answer text' placeholder='Digite aqui sua resposta...'>" +
+                           "</textarea>" +
+                          "</div>" +
+                          "<div class='col-md-11 option'>" +
+                            "<label class='col-md-2 btn option'>" +
+                              "<input type='radio' name='mode'>" + " E " +
+                            "</label>" +
+                            "<textarea class='col-md-9 answer text' placeholder='Digite aqui sua outra resposta...'>" +
+                           "</textarea>" +
+                          "</div>" +
+                        "</div>" +
+                      "</div>" +
+                    "</div>";
 
         $('.quiz').append(newQuestion);
 

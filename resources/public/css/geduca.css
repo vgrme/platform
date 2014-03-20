@@ -163,23 +163,24 @@ padding-right: 15px !important;
   color: #949090;
 }
 
-
-/* Quiz */
+/* General Quiz */
 
 .quiz {
   width: 100%
 }
 
-.quiz .question {
+/* Quiz Right-Wrong*/
+
+.quiz .right-wrong .question {
   padding: 3px;
 }
 
-.quiz .answer {
+.quiz .right-wrong .answer {
   padding-left: 5px;
   padding-top: 20px
 }
 
-.quiz .question .text {
+.quiz .right-wrong .question .text {
   color: #686868;
   border-top: 0px;
   border-left: 0px;
@@ -191,7 +192,7 @@ padding-right: 15px !important;
   max-width:80%;
 }
 
-.quiz .question .text:active {
+.quiz .right-wrong .question .text:active {
   color: #686868;
   border-top: 0px;
   border-left: 0px;
@@ -202,20 +203,20 @@ padding-right: 15px !important;
   max-width:80%;
 }
 
-.quiz .question .number {
+.quiz .right-wrong .question .number {
   color: #686868;
   text-align: center;
   font-size: large;
   padding-top: 15px;
 }
 
-.quiz .question .remove {
+.quiz .right-wrong .question .remove {
  display: inline-block;
  padding-top: 15px;
  text-align: center;
 }
 
-.quiz .answer .text {
+.quiz .right-wrong .answer .text {
   border-top: 0px;
   border-left: 0px;
   border-right: 0px;
@@ -224,7 +225,7 @@ padding-right: 15px !important;
   max-width:75%;
 }
 
-.quiz .answer .text:active {
+.quiz .right-wrong .answer .text:active {
   border-top: 0px;
   border-left: 0px;
   border-right: 0px;
@@ -232,17 +233,23 @@ padding-right: 15px !important;
   max-width:75%;
 }
 
-.quiz .answer .option {
+.quiz .right-wrong .answer .option {
   color: #686868;
   text-align: center;
   font-size: large;
   padding-top: 15px;
 }
 
-.box-question {
+.quiz .right-wrong .box-question {
   display: inline-block;
   padding-bottom: 15px;
   border-bottom: 1px dashed #eee;
   width: 100%;
 }
+
+/* /Right-Wrong */
+
+/* Quiz Judge-Image */
+
+
 
