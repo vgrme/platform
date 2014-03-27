@@ -3,42 +3,51 @@
   (:require [platform.views.layout :as layout]
             [noir.session :as session]
             [noir.cookies :as cookies]
+            [taoensso.timbre :as timbre]
             [noir.response :as resp]
             [noir.validation :as vali]
             [noir.util.crypt :as crypt]
             [platform.models.db :as db]))
 
-(defn valid? [id pass pass1]
-  (vali/rule (vali/has-value? id)
-             [:id "user ID is required"])
-  (vali/rule (vali/min-length? pass 5)
-             [:pass "password must be at least 5 characters"])
-  (vali/rule (= pass pass1)
-             [:pass1 "entered passwords do not match"])
-  (not (vali/errors? :id :pass :pass1)))
+(defn valid? [email password passwordc]
+  
+  (vali/rule (vali/has-value? email)
+             [:email "O campo e-mail é obrigatório"])
+  (vali/rule (db/has-user-with? email)
+             [:email "Este e-mail já está sendo utilizado"])
+  (vali/rule (vali/has-value? password)
+             [:email "O campo senha é obrigatório"])
+  (vali/rule (vali/has-value? passwordc)
+             [:email "O campo confirmar senha é obrigatório"])
+  (vali/rule (vali/min-length? password 5)
+             [:password "A senha deve conter pelo menos 5 caracteres"])
+  (vali/rule (= password passwordc)
+             [:passwordc "As senhas digitas estão diferentes"])
+  
+  (not (vali/errors? :email :password :passwordc)))
 
-(defn register [& [id]]
+
+(defn register [& [email]]
   (layout/render "registration.html"
-    {:id id
-     :id-error (vali/on-error :id first)
-     :pass-error (vali/on-error :pass first)
-     :pass1-error (vali/on-error :pass1 first)}))
+    {:email-error (vali/on-error :email first)
+     :password-error (vali/on-error :password first)
+     :passwordc-error (vali/on-error :passwordc first)}))
 
 (defn login []
   (layout/render "login.html"))
 
-(defn handle-registration [id pass pass1]
-  (if (valid? id pass pass1)
+(defn handle-registration [email password passwordc]
+  (if (valid? email password passwordc)
     (try
       (do
-        (db/create-user {:id id :pass (crypt/encrypt pass)})
-        (session/put! :user-id id)
-        (cookies/put! :geduca-user-id (str id))
+        (db/create-user {:email email :pass (crypt/encrypt password)})
+        (session/put! :user-id email)
+        (cookies/put! :user-id email)
         (resp/redirect "/"))
       (catch Exception ex
-        (vali/rule false [:id (.getMessage ex)])
+        (vali/rule false [:email (.getMessage ex)])
         (register)))
-    (register id)))
+    (register email)))
 
 (defn profile []
   (layout/render
@@ -49,10 +58,10 @@
   (db/update-user (session/get :user-id) first-name last-name email)
   (profile))
 
-(defn handle-login [id pass]
-  (let [user (db/get-user id)]
-    (if (and user (crypt/compare pass (:pass user)))
-      (session/put! :user-id id))
+(defn handle-login [email password]
+  (let [user (db/get-user email)]
+    (if (and user (crypt/compare password (:pass user)))
+      (session/put! :user-id email))
     (resp/redirect "/")))
 
 (defn logout []
@@ -60,10 +69,13 @@
   (resp/redirect "/login"))
 
 (defn is-logged [] 
-  (nil? (session/get (cookies/get :geduca-user-id))))
+  (if (empty? (str 
+                (session/get 
+                  (cookies/get :user-id)))) false true))
 
 (defroutes auth-routes
-  (GET "/" [] (resp/redirect (if (is-logged) "/home" "/login")))
+  (GET "/" [] (resp/redirect 
+                (if (is-logged) "/home" "/login")))
    
   (GET "/register" [] (register))
 

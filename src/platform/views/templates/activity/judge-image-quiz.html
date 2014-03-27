@@ -17,8 +17,21 @@
         <h2 class="page-header text-center">{{title}}</h2>
 
         <form action="{{servlet-context}}/activity/new" class="form" method="POST">
-          <div class="quiz judge-image" id="quiz">
-          </div>
+          <div class="quiz judge-image quiz judge-image col-lg-12" id="quiz">
+              <div class="col-sm-6 col-md-3">
+                  <div class="thumbnail">
+                     <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE1MCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjE5cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MzAweDIwMDwvdGV4dD48L3N2Zz4="  alt="300x220" >
+                  </div>
+                  <div class="caption">
+                      <a href="#" class="btn btn-default" role="button">
+                         Certo
+                      </a> 
+                      <a href="#" class="btn btn-default" role="button">
+                         Errado
+                      </a>
+                  </div>
+               </div>
+            </div>
           
           <h3 class="page-footer"></h3>
           <div class="row">

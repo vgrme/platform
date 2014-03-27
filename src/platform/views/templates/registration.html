@@ -1,32 +1,37 @@
-{% extends "platform/views/templates/base.html" %}
-{% block menu %}
-{% endblock %}
+{% extends "platform/views/templates/enter-form.html" %}
+
 {% block content %}
+
 <form action="{{servlet-context}}/register" method="POST">
-  <div class="form-group col-lg-3">
-    <label for="id">user id</label>
-    {% if id-error %}
-      <div class="alert alert-danger">{{id-error}}</div>
-    {% endif %}
-    <p>
-      <input class="form-control" id="id" name="id" tabindex="1" type="text" value={{id}}></input>
-    </p>
-    <label for="pass">password</label>
-    {% if pass-error %}
-      <div class="alert alert-danger">{{pass-error}}</div>
-    {% endif %}
-    <p>
-      <input class="form-control" id="pass" name="pass" tabindex="2" type="password"></input>
-    </p>
-    <label for="pass1">retype password</label>
-    {% if pass1-error %}
-      <div class="alert alert-danger">{{pass1-error}}</div>
-    {% endif %}
-    <p>
-      <input class="form-control" id="pass1" name="pass1" tabindex="3" type="password"></input>
-    </p>
-    <input class="btn" tabindex="4" type="submit" value="create account">
-  </div>
+   <fieldset>
+      <div class="form-group">
+          <input type="email" class="form-control" placeholder="E-mail" name="email" type="email">
+          {% if email-error %}
+            <div class="alert alert-danger">{{email-error}}</div>
+          {% endif %}
+      </div>
+      <div class="form-group">
+          <input type="password" class="form-control" placeholder="Senha" name="password" type="password">
+          {% if password-error %}
+            <div class="alert alert-danger">{{password-error}}</div>
+          {% endif %}
+      </div>
+      <div class="form-group">
+          <input type="password" class="form-control" placeholder="Confirmar senha" name="passwordc" type="password">
+           {% if passwordc-error %}
+            <div class="alert alert-danger">{{passwordc-error}}</div>
+          {% endif %}
+      </div>
+      <div class="checkbox">
+          <label>
+              <input type="checkbox"> Eu aceito os <a href="#">Termos &amp; Condições</a>
+          </label>
+      </div>
+      <input class="btn btn-lg btn-success btn-block" type="submit" value="Register"/>
+
+      Já possui uma conta? <a href="{{servlet-context}}/login">Faça o seu login!</a>
+    </fieldset>
 </form>
+
 {% endblock %}
 

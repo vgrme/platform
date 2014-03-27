@@ -1,7 +1,8 @@
 (ns platform.models.db
     (:require [monger.core :as mg]
               [monger.collection :as mc]
-              [monger.operators :refer :all]))
+              [monger.operators :refer :all]
+              [taoensso.timbre :as timbre]))
 
 ;; Tries to get the Mongo URI from the environment variable
 ;; MONGOHQ_URL, otherwise default it to localhost
@@ -9,13 +10,20 @@
   (mg/connect-via-uri! uri))
 
 (defn create-user [user]
+  (timbre/info "creating new user: " (str user))
   (mc/insert "users" user))
 
-(defn update-user [id first-name last-name email]
-  (mc/update "users" {:id id}
-             {$set {:first_name first-name
-                    :last_name last-name
-                    :email email}}))
+(defn update-user [email fullname]
+  (timbre/info "update user: " (str email))
+  (mc/update "users" 
+             {:email email}
+             {$set 
+              {:fullname fullname}}))
 
-(defn get-user [id]
-  (mc/find-one-as-map "users" {:id id}))
+(defn get-user [email]
+  (timbre/info "get user: " (str email))
+  (mc/find-one-as-map "users" {:email email}))
+
+
+(defn has-user-with? [email]
+  (nil? (mc/find-one-as-map "users" {:email email})))
