@@ -12,6 +12,7 @@
    [selmer "0.6.1"]
    [com.taoensso/tower "2.0.1"]
    [org.clojure/clojure "1.5.1"]
+   ;[ring-anti-forgery "0.2.1"] 
    [log4j
     "1.2.17"
     :exclusions
@@ -40,7 +41,7 @@
      [ring-mock "0.1.5"]],
     :env {:dev true}}}
   :url
-  "http://geduca..org/app"
+  "http://geduca.org/app"
   :plugins
   [[lein-ring "0.8.10"] [lein-environ "0.4.0"] [lein-cucumber "1.0.2"]]
   :description

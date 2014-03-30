@@ -8,20 +8,28 @@
             [noir.response :as resp]))
 
 
-(defn home []
-  (layout/render "home.html" ))
+(defn dashboard []
+  (layout/render "dashboard.html"))
 
 
 (defroutes home-routes
-  (GET "/home" [] (home))
+  (GET "/home" [] 
+       (dashboard))
   
-  (GET "/lessons" [] (lesson-controller/lessons))
-  (GET "/lessons/new" [] (lesson-controller/new-lesson))
+  (GET "/lessons" [] 
+       (lesson-controller/lessons))
+  (GET "/lessons/new" [] 
+       (lesson-controller/new-lesson))
   
-  (GET "/classes" [] (class-controller/classes))
-  (GET "/classes/new" [] (class-controller/new-class))
+  (GET "/classes" [] 
+       (class-controller/classes))
+  (GET "/classes/new" [] 
+       (class-controller/new-class))
   
-  (GET "/activity/new/right-wrong" [] (activity-controller/right-wrong-quiz))
-  (GET "/activity/new/judge-image" [] (activity-controller/judge-image-quiz))
+  (GET "/activity/new/right-wrong" [] 
+       (activity-controller/right-wrong-quiz))
+  (GET "/activity/new/judge-image" [] 
+       (activity-controller/judge-image-quiz))
   
-  (POST "/activity/new" [] (activity-controller/new-activity)))
+  (POST "/activity/new" []
+       (activity-controller/new-activity)))

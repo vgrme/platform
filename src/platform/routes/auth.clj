@@ -1,5 +1,6 @@
 (ns platform.routes.auth
-  (:use compojure.core)
+  (:use compojure.core
+        clojure.stacktrace)
   (:require [platform.views.layout :as layout]
             [noir.session :as session]
             [noir.cookies :as cookies]
@@ -7,24 +8,47 @@
             [noir.response :as resp]
             [noir.validation :as vali]
             [noir.util.crypt :as crypt]
+            [noir.util.route :as route]
             [platform.models.db :as db]))
 
+
 (defn valid? [email password passwordc]
-  
   (vali/rule (vali/has-value? email)
              [:email "O campo e-mail é obrigatório"])
+  ;(vali/rule (not (= true (vali/is-email? email)))
+   ;          [:email "E-mail inválido"])
   (vali/rule (db/has-user-with? email)
              [:email "Este e-mail já está sendo utilizado"])
   (vali/rule (vali/has-value? password)
-             [:email "O campo senha é obrigatório"])
+             [:password "O campo senha é obrigatório"])
   (vali/rule (vali/has-value? passwordc)
-             [:email "O campo confirmar senha é obrigatório"])
+             [:passwordc "O campo confirmar senha é obrigatório"])
   (vali/rule (vali/min-length? password 5)
              [:password "A senha deve conter pelo menos 5 caracteres"])
   (vali/rule (= password passwordc)
              [:passwordc "As senhas digitas estão diferentes"])
-  
   (not (vali/errors? :email :password :passwordc)))
+
+
+(defn valid-login? [email password]
+  (vali/rule (vali/has-value? email)
+             [:email "O campo e-mail é obrigatório"])
+  (vali/rule (vali/has-value? password)
+             [:password "O campo senha é obrigatório"])
+  (vali/rule (not (db/has-user-with? email))
+             [:email "Email não cadastrado"])
+  (not (vali/errors? :email :password)))
+
+(defn valid-pwd? [password encripted-pass]
+  (vali/rule (crypt/compare password encripted-pass)
+             [:password "Senha inválida"])
+  (not (vali/errors? :password)))
+
+
+(defn login []
+  (layout/render "login.html"
+                 {:email-error (vali/on-error :email first)
+                  :password-error (vali/on-error :password first)}))
 
 
 (defn register [& [email]]
@@ -33,61 +57,79 @@
      :password-error (vali/on-error :password first)
      :passwordc-error (vali/on-error :passwordc first)}))
 
-(defn login []
-  (layout/render "login.html"))
 
 (defn handle-registration [email password passwordc]
   (if (valid? email password passwordc)
     (try
       (do
-        (db/create-user {:email email :pass (crypt/encrypt password)})
+        (db/create-user {:email email :password (crypt/encrypt password)})
         (session/put! :user-id email)
         (cookies/put! :user-id email)
-        (resp/redirect "/"))
+        (resp/redirect "/login"))
       (catch Exception ex
         (vali/rule false [:email (.getMessage ex)])
         (register)))
     (register email)))
 
-(defn profile []
-  (layout/render
-    "profile.html"
-    {:user (db/get-user (session/get :user-id))}))
-
-(defn update-profile [{:keys [first-name last-name email]}]
-  (db/update-user (session/get :user-id) first-name last-name email)
-  (profile))
 
 (defn handle-login [email password]
-  (let [user (db/get-user email)]
-    (if (and user (crypt/compare password (:pass user)))
-      (session/put! :user-id email))
-    (resp/redirect "/")))
+  (if (valid-login? email password)
+      (try
+        (let [user (db/get-user email)]
+          (if (and user (valid-pwd? password (:password user)))
+                ((session/put! :user-id email)
+                  (cookies/put! :user-id email)
+                  (resp/redirect "/"))
+                (login)))
+        (catch Exception ex
+          (vali/rule false [:email (.getMessage ex)]) ;colocar um box pra msg
+          (timbre/info (print-stack-trace ex))
+          (login)))
+      (login)))
+
+
+(defn cached? [] 
+  (if (empty? (str (session/get :user-id (cookies/get :user-id)))) false true))
+
 
 (defn logout []
   (session/clear!)
   (resp/redirect "/login"))
 
-(defn is-logged [] 
-  (if (empty? (str 
-                (session/get 
-                  (cookies/get :user-id)))) false true))
 
+(defn profile []
+  (layout/render "profile.html"
+    {:user (db/get-user (session/get :user-id))}))
+
+
+(defn update-profile [{:keys [fullname]}]
+  (db/update-user (session/get :user-id) fullname)
+  (profile))
+
+  
 (defroutes auth-routes
-  (GET "/" [] (resp/redirect 
-                (if (is-logged) "/home" "/login")))
+  (GET "/" [] 
+       (if (cached?)
+                  (resp/redirect "/home") 
+                  (resp/redirect "/login")))
    
-  (GET "/register" [] (register))
-
-  (POST "/register" [id pass pass1]
-        (handle-registration id pass pass1))
-
-  (GET "/profile" [] (profile))
+  (POST "/register" 
+        [email password passwordc]
+        (handle-registration email password passwordc))
   
-  (POST "/update-profile" {params :params} (update-profile params))
+  (POST "/login" 
+        [email password] 
+        (handle-login email password))
   
-  (GET "/login" [] (login))
+  (GET "/login" [] 
+       (login))
   
-  (POST "/login" [id pass] (handle-login id pass))
-
-  (GET "/logout" [] (logout)))
+  (GET "/register" [] 
+       (register))
+  
+  (GET "/profile" [] 
+       (profile))
+  (GET "/logout" [] 
+       (logout))
+  (POST "/update-profile" {params :params} 
+        (update-profile params)))
