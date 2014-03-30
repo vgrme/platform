@@ -5,7 +5,10 @@
             [platform.controllers.lesson :as lesson-controller]
             [platform.controllers.class :as class-controller]
             [platform.util :as util]
-            [noir.response :as resp]))
+            [noir.response :as resp]
+            [noir.session :as session]
+            [noir.cookies :as cookies]
+            [platform.models.db :as db]))
 
 
 (defn dashboard []

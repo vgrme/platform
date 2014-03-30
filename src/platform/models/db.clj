@@ -21,9 +21,10 @@
               {:fullname fullname}}))
 
 (defn get-user [email]
-  (timbre/info "get user: " (str email))
   (mc/find-one-as-map "users" {:email email}))
 
+(defn get-user-by-id [id]
+  (mc/find-one-as-map "users" {:id id}))
 
 (defn has-user-with? [email]
   (nil? (mc/find-one-as-map "users" {:email email})))
