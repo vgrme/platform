@@ -15,6 +15,7 @@
     {% style "/css/bootstrap-modal-bs3patch.css" %}
     {% style "/css/bootstrap-modal.css" %}
     {% style "/css/geduca.css" %}
+    {% style "/css/croppic.css" %}
     {% style "/font-awesome/css/font-awesome.min.css" %}
     {% style "/css/jquery.gridly.css" %}
 
@@ -38,10 +39,8 @@
             <span class="icon-bar"></span>
           </button>
 
-          <a class="navbar-brand" href="{{servlet-context}}/dashboard">
-             <picture>
-                  <img class="img-responsive" alt="Geduca.org" src="{{servlet-context}}/img/logo/geduca-org.png"> </img>
-              </picture>
+          <a class="navbar-brand" href="{{servlet-context}}/home">
+            <img class="img-responsive" alt="Geduca.org" src="{{servlet-context}}/img/logo/geduca-org.png"> </img>
           </a>
         </div>
 
@@ -52,9 +51,34 @@
            {% include "platform/views/templates/side-menu.html" %}
           {% endblock %}
 
-          {% block head-menu %}
-           {% include "platform/views/templates/head-menu.html" %}
-          {% endblock %}
+          <ul class="nav navbar-nav navbar-right navbar-user">
+            <li class="dropdown messages-dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i>
+               Mensagens <span class="badge">1</span> <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-header">1 Nova(s) Mensagem(s)</li>
+                <li class="message-preview">
+                  <a href="#">
+                    <span class="avatar"><img src="http://placehold.it/50x50"></span>
+                    <span class="name">Geduca:</span>
+                    <span class="message">Olá, contrate a versão Premium e tenha acesso total...</span>
+                    <span class="time"><i class="fa fa-star-o"></i> 4:34 PM</span>
+                  </a>
+                </li>
+                <li class="divider"></li>
+                <li><a href="#">Caixa de Entrada <span class="badge">1</span></a></li>
+              </ul>
+            </li>
+            <li class="dropdown user-dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> 
+               {{user-id}} <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="{{servlet-context}}/profile"><i class="fa fa-user"></i> Perfil</a></li>
+                <li class="divider"></li>
+                <li><a href="{{servlet-context}}/logout"><i class="fa fa-power-off"></i> Sair</a></li>
+              </ul>
+            </li>
+          </ul>
 
           
         </div><!-- /.navbar-collapse -->
@@ -73,6 +97,7 @@
     {% script "/js/jquery.min.js" %}
     {% script "/js/bootstrap.min.js" %}
     {% script "/js/geduca.js" %}
+    {% script "/js/croppic.min.js" %}
     {% script "/js/jquery.bootstrap.wizard.min.js" %}
     {% script "/js/jquery.gridly.js" %}
     {% script "/js/bootstrap-modalmanager.js" %}

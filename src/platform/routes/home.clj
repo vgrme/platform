@@ -8,6 +8,8 @@
             [noir.response :as resp]
             [noir.session :as session]
             [noir.cookies :as cookies]
+            [noir.util.route :as route]
+            [noir.util.route :refer [restricted]]
             [platform.models.db :as db]))
 
 
@@ -17,7 +19,7 @@
 
 (defroutes home-routes
   (GET "/home" [] 
-       (dashboard))
+       (restricted (dashboard)))
   
   (GET "/lessons" [] 
        (lesson-controller/lessons))

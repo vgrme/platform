@@ -1,6 +1,5 @@
 (ns platform.routes.auth
-  (:use compojure.core
-        clojure.stacktrace)
+  (:use compojure.core)
   (:require [platform.views.layout :as layout]
             [noir.session :as session]
             [noir.cookies :as cookies]
@@ -63,7 +62,7 @@
     (try
       (do
         (db/create-user {:email email :password (crypt/encrypt password)})
-        (session/put! :user-id email)
+        ;(session/put! :user-id email)
         (cookies/put! :user-id email)
         (resp/redirect "/login"))
       (catch Exception ex
@@ -77,13 +76,13 @@
       (try
         (let [user (db/get-user email)]
           (if (and user (valid-pwd? password (:password user)))
-                ((session/put! :user-id email)
+                (
+                 ;(session/put! :user-id email)
                   (cookies/put! :user-id email)
                   (resp/redirect "/"))
                 (login)))
         (catch Exception ex
           (vali/rule false [:email (.getMessage ex)]) ;colocar um box pra msg
-          (timbre/info (print-stack-trace ex))
           (login)))
       (login)))
 
@@ -94,6 +93,7 @@
 
 (defn logout []
   (session/clear!)
+  (session/remove! :user-id)
   (resp/redirect "/login"))
 
 

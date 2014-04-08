@@ -6,7 +6,7 @@
 
 
 (defn right-wrong-quiz []
-  (layout/render 
+  (layout/render
     "activity/right-wrong-quiz.html"
     {:bc_lessons "Aulas"
      :bc_new_lesson "Nova aula"
@@ -17,8 +17,8 @@
 
 
 (defn judge-image-quiz []
-  (layout/render 
-    "activity/judge-image-quiz.html" 
+  (layout/render
+    "activity/judge-image-quiz.html"
     {:bc_lessons "Aulas"
      :bc_new_lesson "Nova aula"
      :bc_new_act "Nova atividade"
@@ -27,5 +27,5 @@
      :btn_done "Feito"}))
 
 
-(defn new-activity [] 
+(defn new-activity []
   (resp/redirect "/lessons/new"))

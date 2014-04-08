@@ -1,6 +1,4 @@
-(defproject
-  geduca-platform
-  "0.1.0-SNAPSHOT"
+(defproject geduca-platform "0.1.0-SNAPSHOT"
   :repl-options
   {:init-ns platform.repl}
   :dependencies
@@ -32,18 +30,23 @@
   {:uberjar {:aot :all},
    :production
    {:ring
-    {:open-browser? false, :stacktraces? false, :auto-reload? false}},
+    {:open-browser? false, 
+     :stacktraces? false, 
+     :auto-reload? false}},
    :dev
    {:dependencies
     [[org.clojure/core.cache "0.6.3"]
      [ring/ring-devel "1.2.1"]
      [clj-webdriver/clj-webdriver "0.6.1"]
      [ring-mock "0.1.5"]],
-    :env {:dev true}}}
+    :env 
+    {:dev true}}}
   :url
-  "http://geduca.org/app"
+  "http://geduca.org/"
   :plugins
-  [[lein-ring "0.8.10"] [lein-environ "0.4.0"] [lein-cucumber "1.0.2"]]
+  [[lein-ring "0.8.10"] 
+   [lein-environ "0.4.0"] 
+   [lein-cucumber "1.0.2"]]
   :description
   "Geduca.org: A Collaborative Learning Platform for Elementary School"
   :min-lein-version "2.0.0")

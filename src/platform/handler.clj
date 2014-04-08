@@ -1,22 +1,31 @@
 (ns platform.handler
   (:require [compojure.core :refer [defroutes]]
-            [platform.middleware :as middleware]
-            [noir.util.middleware :refer [app-handler]]
             [compojure.route :as route]
             [taoensso.timbre :as timbre]
             [taoensso.timbre.appenders.rotor :as rotor]
             [selmer.parser :as parser]
             [environ.core :refer [env]]
+            [noir.util.middleware :refer [app-handler]]
+            [noir.util.route :refer [restricted]]
+            [noir.session :as session]
+            [noir.response :as resp]
+            [noir.cookies :as cookies]
+            [platform.middleware :as middleware]
             [platform.routes.auth :refer [auth-routes]]
-            [platform.routes.home :refer [home-routes]]))
+            [platform.routes.home :refer [home-routes]]
+            [platform.routes.uploader :refer [upload-routes]]))
 
 (defroutes app-routes
   (route/resources "/")
   (route/not-found "Not Found"))
 
+(defn user-access [request]
+  (session/get (cookies/get :user-id))
+  :access-rules [{:redirect "/login"
+                :rule user-access}])
+
 (defn init
-  "init will be called once when
-   app is deployed as a servlet on
+  "init will be called once whenvapp is deployed as a servlet on
    an app server such as Tomcat
    put any initialization code here"
   []
@@ -41,11 +50,16 @@
 
 (def app
  (app-handler
-   [auth-routes home-routes app-routes]
-   :middleware
-   [middleware/template-error-page middleware/log-request]
-   :access-rules
-   []
-   :formats
-   [:json-kw :edn]))
+   [auth-routes 
+    home-routes 
+    upload-routes 
+    app-routes]
+     :middleware
+        [middleware/template-error-page 
+         middleware/log-request]
+     :access-rules 
+        [user-access]
+     :formats
+        [:json-kw 
+         :edn]))
 

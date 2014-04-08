@@ -163,6 +163,12 @@ padding-right: 15px !important;
   color: #949090;
 }
 
+/* Box footer BTNs */
+
+.box-footer-btn {
+  margin-top: 40px;
+}
+
 /* General Quiz */
 
 .quiz {
