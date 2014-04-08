@@ -14,7 +14,7 @@
       (->> (assoc params 
              (keyword (s/replace template #".html" "-selected")) "active"
               :servlet-context (:context request)
-              :user-id (:value (session/get :user-id)))
+              :user (session/get :user))
         (parser/render-file (str template-path template))
         response)
       "text/html; charset=utf-8")))

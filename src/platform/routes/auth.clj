@@ -62,8 +62,8 @@
     (try
       (do
         (db/create-user {:email email :password (crypt/encrypt password)})
-        ;(session/put! :user-id email)
-        (cookies/put! :user-id email)
+        ;(session/put! :user email)
+        (cookies/put! :user email)
         (resp/redirect "/login"))
       (catch Exception ex
         (vali/rule false [:email (.getMessage ex)])
@@ -77,8 +77,8 @@
         (let [user (db/get-user email)]
           (if (and user (valid-pwd? password (:password user)))
                 (
-                 ;(session/put! :user-id email)
-                  (cookies/put! :user-id email)
+                  (session/put! :user email)
+                  ;(cookies/put! :user email)
                   (resp/redirect "/"))
                 (login)))
         (catch Exception ex
@@ -87,31 +87,27 @@
       (login)))
 
 
-(defn cached? [] 
-  (if (empty? (str (session/get :user-id (cookies/get :user-id)))) false true))
-
-
 (defn logout []
   (session/clear!)
-  (session/remove! :user-id)
+  (session/remove! :user)
   (resp/redirect "/login"))
 
 
 (defn profile []
   (layout/render "profile.html"
-    {:user (db/get-user (session/get :user-id))}))
+    {:user (db/get-user (session/get :user))}))
 
 
 (defn update-profile [{:keys [fullname]}]
-  (db/update-user (session/get :user-id) fullname)
+  (db/update-user (session/get :user) fullname)
   (profile))
 
   
 (defroutes auth-routes
   (GET "/" [] 
-       (if (cached?)
-                  (resp/redirect "/home") 
-                  (resp/redirect "/login")))
+       (if (nil? (session/get :user))
+                  (resp/redirect "/login") 
+                  (resp/redirect "/home")))
    
   (POST "/register" 
         [email password passwordc]
