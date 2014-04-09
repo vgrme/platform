@@ -67,7 +67,6 @@
   (layout/render "coming-soon.html"
     {:message "Estamos trabalhando para lançar a nossa primeira versão.
                Deixe seu e-mail que entraremos em contato para compartilhar as novidades."
-     :no-spam "Sem spam e sem compartilhamento de e-mails :) "
      :email-error (vali/on-error :email first)
      :success success}))
 

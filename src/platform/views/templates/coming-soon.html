@@ -13,16 +13,13 @@
    <fieldset>
 
       <div class="form-group">
-          <p class="medium">
+          <p class="text-center">
             {{message}}
           </p>
           <input type="email" class="form-control" placeholder="E-mail" name="email" type="email">
           {% if email-error %}
             <div class="alert alert-danger">{{email-error}}</div>
           {% endif %}
-          <p class="small">
-            {{no-spam}}
-          </p>
       </div>
 
       <input class="btn btn-lg btn-success btn-block" type="submit" value="Quero ser notificado"/>
