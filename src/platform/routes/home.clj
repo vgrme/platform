@@ -19,7 +19,7 @@
 
 (defroutes home-routes
   (GET "/home" [] 
-       (dashboard))
+       (restricted (dashboard)))
   
   (GET "/lessons" [] 
        (lesson-controller/lessons))

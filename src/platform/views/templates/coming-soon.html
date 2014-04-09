@@ -1,0 +1,38 @@
+{% extends "platform/views/templates/enter-form.html" %}
+
+{% block content %}
+
+{% if success %}
+<div class="alert alert-success alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  {{success}}
+</div>
+{% endif %}
+
+{% if not success %}
+<form action="{{servlet-context}}/coming-soon" method="POST">
+   <fieldset>
+
+      <div class="form-group">
+          <p class="medium">
+            {{message}}
+          </p>
+          <input type="email" class="form-control" placeholder="E-mail" name="email" type="email">
+          {% if email-error %}
+            <div class="alert alert-danger">{{email-error}}</div>
+          {% endif %}
+          <p class="small">
+            {{no-spam}}
+          </p>
+      </div>
+
+      <input class="btn btn-lg btn-success btn-block" type="submit" value="Quero ser notificado"/>
+      <p>
+       Já possui uma conta? <a href="{{servlet-context}}/login">Faça o seu login!</a>
+      </p>
+    </fieldset>
+</form>
+{% endif %}
+
+{% endblock %}
+

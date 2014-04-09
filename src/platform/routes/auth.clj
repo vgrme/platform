@@ -38,6 +38,13 @@
              [:email "Email não cadastrado"])
   (not (vali/errors? :email :password)))
 
+(defn valid-email? [email]
+  (vali/rule (vali/has-value? email)
+             [:email "O campo e-mail é obrigatório"])
+  (vali/rule (db/has-user-with? email)
+             [:email "Este e-mail já está sendo utilizado"])
+  (not (vali/errors? :email)))
+
 (defn valid-pwd? [password encripted-pass]
   (vali/rule (crypt/compare password encripted-pass)
              [:password "Senha inválida"])
@@ -56,14 +63,33 @@
      :password-error (vali/on-error :password first)
      :passwordc-error (vali/on-error :passwordc first)}))
 
+(defn coming-soon [& [success]]
+  (layout/render "coming-soon.html"
+    {:message "Estamos trabalhando para lançar a nossa primeira versão.
+               Deixe seu e-mail que entraremos em contato para compartilhar as novidades."
+     :no-spam "Sem spam e sem compartilhamento de e-mails :) "
+     :email-error (vali/on-error :email first)
+     :success success}))
+
+
+(defn handle-coming-soon [email]
+  (if (valid-email? email)
+    (try
+      (do
+        (db/create-user {:email email :password (crypt/encrypt "gpass")})
+        (coming-soon "Muito Obrigado!!! Em breve você saberá nossas novidades."))
+      (catch Exception ex
+        (vali/rule false [:email (.getMessage ex)])
+        (coming-soon nil)))
+    (coming-soon nil)))
+
 
 (defn handle-registration [email password passwordc]
   (if (valid? email password passwordc)
     (try
       (do
         (db/create-user {:email email :password (crypt/encrypt password)})
-        ;(session/put! :user email)
-        (cookies/put! :user email)
+        (session/put! :user email)
         (resp/redirect "/login"))
       (catch Exception ex
         (vali/rule false [:email (.getMessage ex)])
@@ -76,9 +102,8 @@
       (try
         (let [user (db/get-user email)]
           (if (and user (valid-pwd? password (:password user)))
-                (
-                  (session/put! :user email)
-                  ;(cookies/put! :user email)
+                ((session/put! :user email)
+                 (cookies/put! :user email)
                   (resp/redirect "/"))
                 (login)))
         (catch Exception ex
@@ -102,16 +127,23 @@
   (db/update-user (session/get :user) fullname)
   (profile))
 
+(defn handle-root-request []
+  (if (nil? (session/get :user))
+    (resp/redirect "/login")
+    (resp/redirect "/home")))
+
   
 (defroutes auth-routes
   (GET "/" [] 
-       (if (nil? (session/get :user))
-                  (resp/redirect "/login") 
-                  (resp/redirect "/home")))
+       (handle-root-request))
    
-  (POST "/register" 
-        [email password passwordc]
-        (handle-registration email password passwordc))
+  ;(POST "/register" 
+   ;     [email password passwordc]
+    ;    (handle-registration email password passwordc))
+    
+  (POST "/coming-soon" 
+        [email]
+        (handle-coming-soon email))
   
   (POST "/login" 
         [email password] 
@@ -120,8 +152,11 @@
   (GET "/login" [] 
        (login))
   
+  ;(GET "/register" [] 
+       ;(register))
+  
   (GET "/register" [] 
-       (register))
+       (coming-soon))
   
   (GET "/profile" [] 
        (profile))
