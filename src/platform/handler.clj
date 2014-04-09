@@ -12,17 +12,15 @@
             [noir.cookies :as cookies]
             [platform.middleware :as middleware]
             [platform.routes.auth :refer [auth-routes]]
-            [platform.routes.home :refer [home-routes]]
+            [platform.routes.home :refer [private-routes]]
             [platform.routes.uploader :refer [upload-routes]]))
 
 (defroutes app-routes
   (route/resources "/")
   (route/not-found "Not Found"))
 
-(defn user-access [request]
-  (session/get (cookies/get :user-id))
-  :access-rules [{:redirect "/login"
-                :rule user-access}])
+(defn teacher-access [request]
+  (session/get :user))
 
 (defn init
   "init will be called once whenvapp is deployed as a servlet on
@@ -49,17 +47,16 @@
   (timbre/info "geduca-platform is shutting down..."))
 
 (def app
- (app-handler
-   [auth-routes 
-    home-routes 
-    upload-routes 
-    app-routes]
-     :middleware
-        [middleware/template-error-page 
-         middleware/log-request]
-     :access-rules 
-        [user-access]
-     :formats
-        [:json-kw 
-         :edn]))
+ (app-handler [auth-routes 
+               private-routes 
+               upload-routes 
+               app-routes]
+              
+              :middleware [middleware/template-error-page 
+                           middleware/log-request]
+    
+              :access-rules [{:redirect "/login"
+                              :rule teacher-access}]
+              :formats [:json-kw 
+                        :edn]))
 

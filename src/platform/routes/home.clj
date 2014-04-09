@@ -9,7 +9,7 @@
             [noir.session :as session]
             [noir.cookies :as cookies]
             [noir.util.route :as route]
-            [noir.util.route :refer [restricted]]
+            [noir.util.route :refer [def-restricted-routes]]
             [platform.models.db :as db]))
 
 
@@ -17,9 +17,9 @@
   (layout/render "dashboard.html"))
 
 
-(defroutes home-routes
+(def-restricted-routes private-routes
   (GET "/home" [] 
-       (restricted (dashboard)))
+       (dashboard))
   
   (GET "/lessons" [] 
        (lesson-controller/lessons))
