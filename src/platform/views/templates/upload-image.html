@@ -1,0 +1,29 @@
+{% extends "platform/views/templates/base.html" %}
+
+{% block content %}
+
+<div class="row">
+
+  <div class="col-md-3 col-md-offset-4">
+
+    {% if p %}
+        {{p}}
+    {% endif %}
+
+    {% if image %}
+      <img src={{image}} width="300" height="300"/>
+    {% endif %}
+
+    <form action="{{servlet-context}}/upload" enctype="multipart/form-data" method="POST">
+      <div class="thumbnail cropContainerHeader">
+        <input id="file" name="file" type="file" data-filename-placement="inside"/>
+      </div>
+      <input class="btn btn-lg btn-success btn-block" type="submit" value="Upload"/>
+    </form>
+
+  </div>
+
+</div><!-- /.row  --> 
+
+{% endblock %}
+

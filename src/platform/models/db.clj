@@ -1,30 +1,33 @@
 (ns platform.models.db
-    (:require [monger.core :as mg]
-              [monger.collection :as mc]
-              [monger.operators :refer :all]
-              [taoensso.timbre :as timbre]))
+	(:require 
+	   	[monger.core :as mongo]
+		[monger.collection :as coll]
+		[monger.operators :refer :all]
+		[taoensso.timbre :as timbre])
+	(:import 
+   		[org.bson.types ObjectId]))
 
 ;; Tries to get the Mongo URI from the environment variable
 ;; MONGOHQ_URL, otherwise default it to localhost
 (let [uri (get (System/getenv) "MONGOHQ_URL" "mongodb://127.0.0.1/geduca-platform")]
-  (mg/connect-via-uri! uri))
+	(mongo/connect-via-uri! uri))		
 
-(defn create-user [user]
-  (timbre/info "creating new user: " (str user))
-  (mc/insert "users" user))
+(defn create-user [email enc-pwd]
+	(let [oid (ObjectId.)]
+		(coll/insert "users" { :_id oid :email email :password enc-pwd })
+		(.toString oid)))
 
 (defn update-user [email fullname]
-  (timbre/info "update user: " (str email))
-  (mc/update "users" 
-             {:email email}
-             {$set 
-              {:fullname fullname}}))
+	(coll/update "users" 
+				{:email email}
+				{$set 
+					{:fullname fullname}}))
 
 (defn get-user [email]
-  (mc/find-one-as-map "users" {:email email}))
+	(coll/find-one-as-map "users" {:email email}))
 
 (defn get-user-by-id [id]
-  (mc/find-one-as-map "users" {:id id}))
+	(coll/find-one-as-map "users" {:_id (ObjectId. id)}))
 
 (defn has-user-with? [email]
-  (nil? (mc/find-one-as-map "users" {:email email})))
+	(nil? (coll/find-one-as-map "users" {:email email})))
