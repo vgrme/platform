@@ -127,7 +127,7 @@
 		(login)))
 
 
- (defn cached? [] 
+ (defn logged? [] 
    (if (empty? (session/get :user-id)) false true))
 
 
@@ -151,7 +151,7 @@
 
 (defroutes auth-routes
   	(GET "/" [] 
-        (if (cached?)
+        (if (logged?)
            		(resp/redirect "/home") 
                	(resp/redirect "/login")))
    
@@ -174,7 +174,7 @@
 		;(register))
  		(coming-soon))
 
-	(GET "/profile" [] 
+	(GET "/perfil" [] 
 		(profile))
 	(GET "/logout" [] 
 		(logout))

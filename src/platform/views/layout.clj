@@ -14,7 +14,7 @@
 			(content-type
 				(->> (assoc params 
 						(keyword (s/replace template #".html" "-selected")) "active"
-						:servlet-context (:context request)
+						:context (:context request)
 						:user (session/get :user-id))
 					(parser/render-file (str template-path template))
 				response)

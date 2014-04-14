@@ -9,21 +9,21 @@
   <div class="row">
 
         <ol class="breadcrumb">
-          <li><a href="{{servlet-context}}/lessons"><i class="fa fa-tasks"></i> {{bc_lessons}}</a></li>
-          <li><a href="{{servlet-context}}/lessons/new"><i class="fa fa-file"></i> {{bc_new_lesson}}</a></li>
+          <li><a href="{{context}}/aulas"><i class="fa fa-tasks"></i> {{bc_lessons}}</a></li>
+          <li><a href="{{context}}/nova/aula"><i class="fa fa-file"></i> {{bc_new_lesson}}</a></li>
           <li class="selected"><i class="fa fa-file"></i> {{bc_new_act}}</li>
         </ol>
 
         <h2 class="page-header text-center">{{title}}</h2>
 
-        <p><a class="fa fa-plus btn btn-primary btn" href="{{servlet-context}}/upload">  Upload Image</a></p>
+        <p><a class="fa fa-plus btn btn-primary btn" href="{{context}}/upload">  Upload Image</a></p>
 
-        <form action="{{servlet-context}}/activity/new" class="form" method="POST">
+        <form action="{{context}}/nova-atividade`" class="form" method="POST">
           <div class="quiz judge-image quiz judge-image col-lg-12 text-center" id="quiz">
               {% for pic in pictures %}
                 <div class="thumbnail cropContainerHeader">
-                  <a class={{pic.name}} href="{{servlet-context}}/img/{{pic.userid}}/{{pic.name}}">
-                    <img src="{{servlet-context}}/img/{{pic.userid}}/{{thumb-prefix}}{{pic.name}}"/>
+                  <a class={{pic.name}} href="{{context}}/img/{{pic.userid}}/{{pic.name}}">
+                    <img src="{{context}}/img/{{pic.userid}}/{{thumb-prefix}}{{pic.name}}"/>
                     {% ifequal user page-owner %}
                       <input id="{{pic.name}}" name="{{pic.name}}" type="checkbox" value="true" />
                     {% endifequal %}

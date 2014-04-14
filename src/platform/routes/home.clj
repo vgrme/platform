@@ -22,17 +22,17 @@
 (def-restricted-routes private-routes
 	(GET "/home" [] 
 		(dashboard))
-	(GET "/lessons" [] 
+	(GET "/aulas" [] 
 		(lesson-controller/lessons))
-	(GET "/lessons/new" [] 
+	(GET "/nova/aula" [] 
 		(lesson-controller/new-lesson))
-	(GET "/classes" [] 
+	(GET "/turmas" [] 
 		(class-controller/classes))
-	(GET "/classes/new" [] 
+	(GET "/nova/turma" [] 
 		(class-controller/new-class))
-	(GET "/activity/new/right-wrong" [] 
+	(GET "/nova/atividade/right-wrong" [] 
 		(activity-controller/right-wrong-quiz))
-	(GET "/activity/new/judge-image" [] 
+	(GET "/nova/atividade/judge-image" [] 
 		(activity-controller/judge-image-quiz))
-	(POST "/activity/new" []
+	(POST "/nova-atividade" []
 		(activity-controller/new-activity)))

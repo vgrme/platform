@@ -9,14 +9,14 @@
   <div class="row">
 
         <ol class="breadcrumb">
-          <li><a href="{{servlet-context}}/lessons"><i class="fa fa-tasks"></i> {{bc_lessons}}</a></li>
-          <li><a href="{{servlet-context}}/lessons/new"><i class="fa fa-file"></i> {{bc_new_lesson}}</a></li>
+          <li><a href="{{context}}/aulas"><i class="fa fa-tasks"></i> {{bc_lessons}}</a></li>
+          <li><a href="{{context}}/nova/aula"><i class="fa fa-file"></i> {{bc_new_lesson}}</a></li>
           <li class="selected"><i class="fa fa-file"></i> {{bc_new_act}}</li>
         </ol>
      
         <h2 class="page-header text-center">{{title}}</h2>
 
-        <form action="{{servlet-context}}/activity/new" class="form" method="POST">
+        <form action="{{context}}/nova/atividade" class="form" method="POST">
           <div class="quiz right-wrong" id="quiz">
           </div>
           

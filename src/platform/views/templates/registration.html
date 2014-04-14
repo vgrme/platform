@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form action="{{servlet-context}}/register" method="POST">
+<form action="{{context}}/register" method="POST">
    <fieldset>
       <div class="form-group">
           <input type="email" class="form-control" placeholder="E-mail" name="email" type="email">
@@ -25,7 +25,7 @@
 
       <input class="btn btn-lg btn-success btn-block" type="submit" value="Registrar"/>
       <p>
-       Já possui uma conta? <a href="{{servlet-context}}/login">Faça o seu login!</a>
+       Já possui uma conta? <a href="{{context}}/login">Faça o seu login!</a>
       </p>
     </fieldset>
 </form>
