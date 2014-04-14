@@ -11,7 +11,8 @@
 		[noir.validation :as vali]
 		[noir.util.crypt :as crypt]
 		[noir.util.route :as route]
-		[platform.models.db :as db])
+		[platform.models.db :as db]
+  		[noir.util.route :refer [restricted]])
  	(:import 
 		[java.io File FileInputStream FileOutputStream]))
 
@@ -101,9 +102,8 @@
 		(try
 			  (do
 					(let [user-id (db/create-user email (crypt/encrypt password))]
-				    	(session/put! :user email)
- 						(session/put! :user-id user-id)
-     					(cookies/put! :user-id user-id))
+ 						(session/put! :user-id email))
+     					;(cookies/put! :user-id user-id))
         			(create-gallery-path)
 				    (resp/redirect "/login"))
 			  (catch Exception ex
@@ -113,46 +113,54 @@
 
 
 (defn handle-login [email password]
-  ;ta limpando a sessao qndo faz redirect para o /
 	(if (valid-login? email password)
 		(try
-    		(do
-				(let [user (db/get-user email)]
-					  (if (and user (valid-pwd? password (:password user)))
-					        ((session/put! :user email)
-	             			 (session/put! :user-id (.toString (:id user)))
-					         (resp/redirect "/"))
-				        	(login))))
+			(let [user (db/get-user email)]
+				  (if (and user (valid-pwd? password (:password user)))
+				        ((session/put! :user-id email)
+                  		 (cookies/put! :user-id email)
+				         (resp/redirect "/"))
+			        	(login)))
 			(catch Exception ex
-				  (vali/rule false [:email (.getMessage ex)]) ;colocar um box pra msg
-				  (login)))
+				(vali/rule false [:email (.getMessage ex)]) ;colocar um box pra msg
+				(login)))
 		(login)))
+
+
+ (defn cached? [] 
+   (if (empty? (session/get :user-id)) false true))
 
 
 (defn logout []
 	(session/clear!)
-	(session/remove! :user)
+ 	(session/remove! :user-id)
 	(resp/redirect "/login"))
 
 
 (defn profile []
 	(layout/render 
 	   	"profile.html"
-		{:user (db/get-user (session/get :user))}))
+		{:user (db/get-user (session/get :user-id))}))
 
 
 (defn update-profile [{:keys [fullname]}]
-	(db/update-user (session/get :user) fullname)
+	(db/update-user (session/get :user-id) fullname)
 	(profile))
 
-(defn handle-root-request []
-	(if (empty? (session/get :user-id))
-		(resp/redirect "/login")
-		(resp/redirect "/home")))
-  
+
+
 (defroutes auth-routes
-	(GET "/" []
-		(handle-root-request))
+  	(GET "/" [] 
+        (if (cached?)
+           		(resp/redirect "/home") 
+               	(resp/redirect "/login")))
+   
+  	(GET "/login" [] 
+		(login))
+   
+   	(POST "/login" 
+		[email password] 
+		(handle-login email password))
    
 	(POST "/register" 
 		[email password passwordc]
@@ -161,19 +169,10 @@
 	(POST "/coming-soon" 
 		[email]
 		(handle-coming-soon email))
-  
-	(POST "/login" 
-		[email password] 
-		(handle-login email password))
-
-	(GET "/login" [] 
-		(login))
 
 	(GET "/register" [] 
-		(register))
-
-	;(GET "/register" [] 
-	;	(coming-soon))
+		;(register))
+ 		(coming-soon))
 
 	(GET "/profile" [] 
 		(profile))

@@ -21,7 +21,7 @@
 	(route/not-found "Not Found"))
 
 (defn teacher-access [request]
-	(session/get :user))
+	(session/get :user-id))
 
 (defn init
 	"init will be called once whenvapp is deployed as a servlet on
