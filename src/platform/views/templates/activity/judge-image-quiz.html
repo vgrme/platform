@@ -20,39 +20,38 @@
 
         <form action="{{context}}/nova-atividade`" class="form" method="POST">
           <div class="quiz judge-image quiz judge-image col-lg-12 text-center" id="quiz">
+            <div>
               {% for pic in pictures %}
-                <div class="thumbnail cropContainerHeader">
+                <div class="thumbnail">
+
                   <a class={{pic.name}} href="{{context}}/img/{{pic.userid}}/{{pic.name}}">
                     <img src="{{context}}/img/{{pic.userid}}/{{thumb-prefix}}{{pic.name}}"/>
-                    {% ifequal user page-owner %}
-                      <input id="{{pic.name}}" name="{{pic.name}}" type="checkbox" value="true" />
-                    {% endifequal %}
                   </a>
-                </div>
-                <div class="col-lg-3">
-                  <div class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-default active">
-                        <input type="radio" name="answer" value="Certa">Certo
-                    </label>
-                    <label class="btn btn-default">
-                        <input type="radio" name="answer" value="Errada">Errado
-                    </label>
+               
+                  <div class="col-lg-3">
+                    <div class="btn-group" data-toggle="buttons">
+                      <label class="btn btn-default active">
+                          <input type="radio" name="answer" value="Certa">Certo
+                      </label>
+                      <label class="btn btn-default">
+                          <input type="radio" name="answer" value="Errada">Errado
+                      </label>
+                    </div>
                   </div>
+                  
                 </div>
-                {% endfor %}
-                {% ifequal user page-owner %}
-                    <input id="delete" type="submit" value="delete images" />
-                {% endifequal %}
+              {% endfor %}
             </div>
+          </div>
 
-            <div class="col-lg-12 box-footer-btn">
-              <div class="col-md-3 text-left">
-                <input class="add-right-wrong-box btn btn-lg btn-block btn-primary" type="button" value="{{btn_add}}" />
-              </div>
-              <div class="col-md-3 col-md-offset-6 text-right">
-                <input class="btn btn-lg btn-success btn-block" type="submit" value="{{btn_done}}"/>
-              </div>
+          <div class="col-lg-12 box-footer-btn">
+            <div class="col-md-3 text-left">
+              <input class="add-right-wrong-box btn btn-lg btn-block btn-primary" type="button" value="{{btn_add}}" />
             </div>
+            <div class="col-md-3 col-md-offset-6 text-right">
+              <input class="btn btn-lg btn-success btn-block" type="submit" value="{{btn_done}}"/>
+            </div>
+          </div>
         </form>
 
   </div><!-- /.row  -->

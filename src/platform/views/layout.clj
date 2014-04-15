@@ -13,9 +13,10 @@
 		(render [this request]
 			(content-type
 				(->> (assoc params 
-						(keyword (s/replace template #".html" "-selected")) "active"
-						:context (:context request)
-						:user (session/get :user-id))
+							(keyword (s/replace template #".html" "-selected")) 
+       						"active"
+							:context (:context request)
+							:user (session/get :user-id))
 					(parser/render-file (str template-path template))
 				response)
 			"text/html; charset=utf-8")))

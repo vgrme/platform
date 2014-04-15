@@ -3,15 +3,14 @@
 		compojure.core)
 	(:require
 		[platform.views.layout :as layout]
-		[hiccup.form :refer :all]
-		[hiccup.element :refer [image]]
 		[hiccup.util :refer [url-encode]]
 		[noir.io :refer [upload-file resource-path]]
 		[noir.session :as session]
 		[noir.response :as resp]
 		[noir.util.route :refer [restricted]]
 		[clojure.java.io :as io]
-		[ring.util.response :refer [file-response]])
+		[ring.util.response :refer [file-response]]
+  		[platform.models.db :as db])
 	(:import 
 		[java.io File FileInputStream FileOutputStream]
 		[java.awt.image AffineTransformOp BufferedImage]
@@ -22,6 +21,12 @@
 (def thumb-size 150)
 (def thumb-prefix "thumb_")
 (def galleries "galleries")
+
+(defn image-uri [userid file-name]
+	(str "/img/" userid "/" (url-encode file-name)))
+
+(defn thumb-uri [userid file-name]
+	(image-uri userid (str thumb-prefix file-name)))
 
 (defn gallery-path []
 	(str galleries File/separator (session/get :user-id)))
@@ -53,24 +58,31 @@
 (defn upload-page [info]
 	(layout/render "upload-image.html" {:p info}))
 
-(defn handle-upload [file]
+(defn handle-upload [file filename]
 		(upload-page
-			(if (or (nil? file) (empty? (:filename file)))
+			(if (or (nil? file) (empty? filename))
 				"Selecione um arquivo para ser carregado."
 				(try
 					(noir.io/upload-file (gallery-path) file :create-path? true)
-     				(save-thumbnail (:filename file))
-					(image {:height "150px"}
-					(str "/img/" thumb-prefix (url-encode (:filename file))))
+     				(save-thumbnail filename)
+         			(db/add-image (session/get :user-id) filename)
+					{:image (str "/img/" (session/get :user-id) "/" thumb-prefix (url-encode filename))}
 				(catch Exception ex
 					(str 
        					"Não foi possivel carregar o arquivo " 
-            			(:filename file) 
+            			filename 
            				", Erro: " 
            				(.getMessage ex)))))))
 
 (defroutes upload-routes
-	(GET "/upload" [info] (upload-page info))
-  	(POST "/upload" [file] (handle-upload file))
-	(GET "/img/:file-name" [file-name] (serve-file file-name))
- 	(GET "/img/:user-id/:file-name" [user-id file-name] (serve-file user-id file-name)))
+	(GET "/upload" [info] 
+    	(upload-page info))
+ 
+  	(POST "/upload" [file] 
+        (handle-upload file (:filename file)))
+        
+	(GET "/img/:file-name" [file-name] 
+    	(serve-file file-name))
+ 
+ 	(GET "/img/:user-id/:file-name" [user-id file-name] 
+    	(serve-file user-id file-name)))
