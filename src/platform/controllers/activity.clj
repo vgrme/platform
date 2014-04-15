@@ -35,4 +35,4 @@
      :pictures (db/images-by-user userid)}))
 
 (defn new-activity []
-  (resp/redirect "/lessons/new"))
+  (resp/redirect "/nova/aula"))
