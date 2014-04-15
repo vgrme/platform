@@ -70,7 +70,6 @@
 			{:msg 
     			(str "Não foi possivel carregar a imagem. Erro: " (.getMessage ex))}))))
 
-;(str "/img/" (session/get :user-id) "/" thumb-prefix (url-encode filename))
 (defroutes upload-routes
   	(POST "/upload" [file] 
         (handle-upload file (:filename file)))
