@@ -56,28 +56,22 @@
 		(File. (str path thumb-prefix filename)))))
 
 (defn upload-page [info]
-	(layout/render "upload-image.html" {:p info}))
+	(layout/render "upload-image.html" info))
 
 (defn handle-upload [file filename]
-		(upload-page
-			(if (or (nil? file) (empty? filename))
-				"Selecione um arquivo para ser carregado."
-				(try
-					(noir.io/upload-file (gallery-path) file :create-path? true)
-     				(save-thumbnail filename)
-         			(db/add-image (session/get :user-id) filename)
-					{:image (str "/img/" (session/get :user-id) "/" thumb-prefix (url-encode filename))}
-				(catch Exception ex
-					(str 
-       					"Não foi possivel carregar o arquivo " 
-            			filename 
-           				", Erro: " 
-           				(.getMessage ex)))))))
+	(if (or (nil? file) (empty? filename))
+		"Selecione uma imagem para ser carregada."
+		(try
+			(noir.io/upload-file (gallery-path) file :create-path? true)
+				(save-thumbnail filename)
+				(db/add-image (session/get :user-id) filename)
+				{:msg "A imagem foi carregada com sucesso."}
+		(catch Exception ex
+			{:msg 
+    			(str "Não foi possivel carregar a imagem. Erro: " (.getMessage ex))}))))
 
+;(str "/img/" (session/get :user-id) "/" thumb-prefix (url-encode filename))
 (defroutes upload-routes
-	(GET "/upload" [info] 
-    	(upload-page info))
- 
   	(POST "/upload" [file] 
         (handle-upload file (:filename file)))
         

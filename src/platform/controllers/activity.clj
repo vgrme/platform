@@ -28,6 +28,8 @@
      :title "Atividade: Julgando Imagens"
      :btn_add "Nova Questão"
      :btn_done "Feito"
+     :btn_upload "Carregar"
+     :lbl_upload_image "Carregar imagem"
      :thumb-prefix "thumb_"
      :page-owner userid
      :pictures (db/images-by-user userid)}))

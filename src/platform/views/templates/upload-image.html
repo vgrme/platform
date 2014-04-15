@@ -1,29 +1,33 @@
-{% extends "platform/views/templates/base.html" %}
 
-{% block content %}
+<div id="modal-upload" class="modal fade" data-backdrop="static" tabindex="-1" data-width="760" style="display: none;">
 
-<div class="row">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h4 class="modal-title">Selecione uma imagem</h4>
+    </div>
 
-  <div class="col-md-3 col-md-offset-4">
+    <div class="modal-body">
+      <div class="row">
+        {% if msg %}
+          <div class="alert alert-success alert-dismissable">
+              {{msg}}
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          </div>
+        {% endif %}
 
-    {% if p %}
-        {{p}}
-    {% endif %}
+         <form action="{{context}}/upload" enctype="multipart/form-data" method="POST">
+          <div class="thumbnail">
+            <input id="file" name="file" type="file" data-filename-placement="inside"/>
+          </div>
+          <input class="btn btn-lg btn-success btn-block" type="submit" value="Upload"/>
+        </form>
+      </div><!-- /.row  -->
+    </div> <!-- /.modal=body  -->
 
-    {% if image %}
-      <img src={{image}} width="300" height="300"/>
-    {% endif %}
-
-    <form action="{{context}}/upload" enctype="multipart/form-data" method="POST">
-      <div class="thumbnail cropContainerHeader">
-        <input id="file" name="file" type="file" data-filename-placement="inside"/>
+    <div class="modal-footer text-right">
+      <div class="col-md-6">
+         <a href="#" data-dismiss="modal" class="btn">Feito</a>
       </div>
-      <input class="btn btn-lg btn-success btn-block" type="submit" value="Upload"/>
-    </form>
+    </div>
 
-  </div>
-
-</div><!-- /.row  --> 
-
-{% endblock %}
-
+</div> 

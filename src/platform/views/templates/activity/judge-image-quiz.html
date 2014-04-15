@@ -16,32 +16,30 @@
 
         <h2 class="page-header text-center">{{title}}</h2>
 
-        <p><a class="fa fa-plus btn btn-primary btn" href="{{context}}/upload">  Upload Image</a></p>
+        <p><a class="fa fa-plus btn btn-primary btn" data-toggle="modal" href="#modal-upload"> {{lbl_upload_image}}</a></p>
 
         <form action="{{context}}/nova-atividade`" class="form" method="POST">
           <div class="quiz judge-image quiz judge-image col-lg-12 text-center" id="quiz">
-            <div>
-              {% for pic in pictures %}
-                <div class="thumbnail">
+            {% for pic in pictures %}
+              <div class="thumbnail col-lg-3">
 
-                  <a class={{pic.name}} href="{{context}}/img/{{pic.userid}}/{{pic.name}}">
-                    <img src="{{context}}/img/{{pic.userid}}/{{thumb-prefix}}{{pic.name}}"/>
-                  </a>
-               
-                  <div class="col-lg-3">
-                    <div class="btn-group" data-toggle="buttons">
-                      <label class="btn btn-default active">
-                          <input type="radio" name="answer" value="Certa">Certo
-                      </label>
-                      <label class="btn btn-default">
-                          <input type="radio" name="answer" value="Errada">Errado
-                      </label>
-                    </div>
-                  </div>
-                  
+                <a class={{pic.name}} href="{{context}}/img/{{pic.userid}}/{{pic.name}}">
+                  <img src="{{context}}/img/{{pic.userid}}/{{thumb-prefix}}{{pic.name}}"/>
+                </a>
+             
+                <br />
+
+                <div class="btn-group" data-toggle="buttons">
+                  <label class="btn btn-default active">
+                      <input type="radio" name="answer" value="Certa">Certo
+                  </label>
+                  <label class="btn btn-default">
+                      <input type="radio" name="answer" value="Errada">Errado
+                  </label>
                 </div>
-              {% endfor %}
-            </div>
+
+              </div>
+            {% endfor %}
           </div>
 
           <div class="col-lg-12 box-footer-btn">
@@ -53,9 +51,38 @@
             </div>
           </div>
         </form>
+  
+        <div id="modal-upload" class="modal fade" data-backdrop="static" tabindex="-1" data-width="760" style="display: none;">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h4 class="modal-title">Selecione uma imagem </h4>
+            </div>
 
-  </div><!-- /.row  -->
+            <div class="modal-body">
+              <div class="row">
+                {% if msg %}
+                  <div class="alert alert-success alert-dismissable">
+                      {{msg}}
+                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  </div>
+                {% endif %}
 
+                 <form action="{{context}}/upload" enctype="multipart/form-data" method="POST">
+                    <div class="thumbnail">
+                      <input id="file" name="file" type="file" data-filename-placement="inside"/>
+                    </div>
+                    <input class="btn btn-lg btn-success btn-block" type="submit" value="{{btn_upload}}"/>
+                </form>
+              </div><!-- /.row  -->
+            </div> <!-- /.modal=body  -->
+
+            <div class="modal-footer text-right">
+              <div class="col-md-6">
+                 <a href="#" data-dismiss="modal" class="btn">Feito</a>
+              </div>
+            </div>
+        </div> 
+    </div><!-- /.row  -->
 {% endblock %}
 
 
