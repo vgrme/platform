@@ -60,18 +60,17 @@
 
 (defn handle-upload [file filename]
 	(if (or (nil? file) (empty? filename))
-		"Selecione uma imagem para ser carregada."
+		(resp/json {:msg "Selecione uma imagem para ser carregada." :code "NOK"})
 		(try
 			(noir.io/upload-file (gallery-path) file :create-path? true)
 				(save-thumbnail filename)
 				(db/add-image (session/get :user-id) filename)
-				{:msg "A imagem foi carregada com sucesso."}
+				(resp/json {:msg "A imagem foi carregada com sucesso." :code "OK"})
 		(catch Exception ex
-			{:msg 
-    			(str "Não foi possivel carregar a imagem. Erro: " (.getMessage ex))}))))
+    			(resp/json {:msg (str "Não foi possivel carregar a imagem. Erro: " (.getMessage ex)) :code "NOK"})))))
 
 (defroutes upload-routes
-  	(POST "/upload" [file] 
+  	(POST "/upload/img" [file] 
         (handle-upload file (:filename file)))
         
 	(GET "/img/:file-name" [file-name] 

@@ -19,7 +19,7 @@
      :btn_done        "Feito"}))
 
 
-(defn judge-image-quiz [userid]
+(defn judge-image-quiz [user-id]
   (layout/render
     "activity/judge-image-quiz.html"
     {:bc_lessons        "Aulas"
@@ -32,8 +32,8 @@
      :btn_fechar        "Fechar"
      :lbl_upload_image  "Carregar imagem"
      :thumb-prefix      "thumb_"
-     :page-owner        userid
-     :pictures (db/images-by-user userid)}))
+     :page-owner        user-id
+     :pictures (db/images-by-user user-id)}))
 
 (defn new-activity []
   (resp/redirect "/nova/aula"))

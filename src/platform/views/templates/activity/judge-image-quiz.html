@@ -65,29 +65,16 @@
 
             <div class="modal-body">
               <div class="row">
-                {% if msg %}
-                  <div class="alert alert-success alert-dismissable">
-                      {{msg}}
-                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                  </div>
-                {% endif %}
-
-                <img id="loader" style="display:none" src="http://www.bba-reman.com/images/fbloader.gif" alt="Loading..." />
-
-                <div id="preview" class="thumbnail col-lg-5" style="display:none"> </div>
-
                 <form id="form-upload" enctype="multipart/form-data" method="POST">
-                    
                     <div class="col-lg-12">
-                      <div class="col-lg-12">
+                      <div id="status" class="alert alert-dismissable" style="display:none;"> </div>
                         <input id="file" class="form-control" name="file" type="file" accept="image/*" data-filename-placement="inside"/>
-                      </div>
                       <br />
                       <div class="col-lg-6">
                         <input id="button" class="btn btn-lg btn-primary btn-block" type="submit" value="{{btn_upload}}"/>
                       </div>
                       <div class="col-lg-6">
-                        <a href="#" data-dismiss="modal" class="btn btn-lg btn-success btn-block">{{btn_fechar}}</a>
+                        <a id="close" href="#" data-dismiss="modal" class="btn btn-lg btn-success btn-block">{{btn_fechar}}</a>
                       </div>
                     </div>
                 </form>
@@ -101,54 +88,47 @@
 
 {% block footer-js %}
 
+
+
 <script type="text/javascript">
 
-    var files;
-     
-    $('input[type=file]').on('change', prepareUpload);
-     
-    function prepareUpload(event) {
-      files = event.target.files;
-    }
+  $(document).ready(function() { 
+      var options = { 
+          target:        '#status',   
+          success:       showSuccess,
+          url:           '{{context}}/upload/img',        
+          clearForm:      true,       
+          resetForm:      true,   
+          dataType:       'json'    
+      }; 
+   
+      $('#form-upload').submit(function() { 
+          $(this).ajaxSubmit(options); 
+          return false; 
+      }); 
+  }); 
+ 
+  function showSuccess(responseJson, statusText, xhr, $form)  { 
+      var status = $('#status');
 
-    $('#form-upload').on('submit', uploadFiles);
+      status.empty();
 
-    function uploadFiles(event) {
-        event.stopPropagation(); 
-        event.preventDefault();
+      if (responseJson.code === "OK") {
+        status.addClass('alert-success').removeClass('alert-danger');
+      } else {
+        status.addClass('alert-danger').removeClass('alert-success');
+      }
 
-        var data = new FormData();
-        $.each(files, function(key, value) {
-          data.append(key, value);
-        });
-        
-        $.ajax({
-            url: '{{context}}/upload',
-            type: 'POST',
-            data: data,
-            cache: false,
-            dataType: 'multipart/form-data',
-            processData: false,
-            contentType: true, // Set content type to false as jQuery will tell the server its a query string request
-            success: function(data, textStatus, jqXHR) {
-              
-              console.log('result: ' + data + ' - ' + textStatus + ' - ' + jqXHR);
+      status.append(responseJson.msg);
+      status.show();
+  } 
 
-              if (typeof data.error === 'undefined') {
-                // Success so call function to process the form
-                submitForm(event, data);
-              } else {
-                // Handle errors here
-                console.log('ERRORS: ' + data.error);
-              }
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-              // Handle errors here
-              console.log('ERRORS: ' + textStatus);
-              // STOP LOADING SPINNER
-            }
-        });
-    }
+  $('#close').click(function() { 
+          $('#status').empty();
+          $('#status').hide();
+          location.reload();
+          return true; 
+      }); 
 
 </script>
 
