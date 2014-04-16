@@ -55,6 +55,14 @@
 		"jpeg"
 		(File. (str path thumb-prefix filename)))))
 
+(defn remove-image [filename]
+	(let [path (str (gallery-path) File/separator)]
+		(ImageIO/write
+			(scale-image (io/input-stream (str path filename)))
+		"jpeg"
+		(File. (str path thumb-prefix filename)))))
+
+
 (defn upload-page [info]
 	(layout/render "upload-image.html" info))
 
@@ -63,15 +71,29 @@
 		(resp/json {:msg "Selecione uma imagem para ser carregada." :code "NOK"})
 		(try
 			(noir.io/upload-file (gallery-path) file :create-path? true)
-				(save-thumbnail filename)
-				(db/add-image (session/get :user-id) filename)
-				(resp/json {:msg "A imagem foi carregada com sucesso." :code "OK"})
+			(save-thumbnail filename)
+			(db/add-image (session/get :user-id) filename)
+			(resp/json {:msg "A imagem foi carregada com sucesso." :code "OK"})
 		(catch Exception ex
-    			(resp/json {:msg (str "Não foi possivel carregar a imagem. Erro: " (.getMessage ex)) :code "NOK"})))))
+			(resp/json {:msg (str "Não foi possivel carregar a imagem. Erro: " (.getMessage ex)) :code "NOK"})))))
+
+(defn handle-remove [filename]
+  (if (empty? filename)
+		(resp/json {:msg "Selecione uma imagem para ser removida." :code "NOK"})
+		(try
+    		(io/delete-file (str (gallery-path) File/separator filename))
+			(io/delete-file (str (gallery-path) File/separator thumb-prefix filename))
+			(db/remove-image (session/get :user-id) filename)
+			(resp/json {:msg "A imagem foi removida com sucesso." :code "OK"})
+		(catch Exception ex
+			(resp/json {:msg (str "Não foi possivel remover a imagem. Erro: " (.getMessage ex)) :code "NOK"})))))
 
 (defroutes upload-routes
   	(POST "/upload/img" [file] 
         (handle-upload file (:filename file)))
+   
+   (POST "/remove/img/" [filename] 
+        (handle-remove filename))
         
 	(GET "/img/:file-name" [file-name] 
     	(serve-file file-name))

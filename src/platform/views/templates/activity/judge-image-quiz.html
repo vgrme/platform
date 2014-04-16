@@ -23,7 +23,7 @@
             {% for pic in pictures %}
               <div class="thumbnail col-lg-3">
 
-                <a class="fa fa-times closable" href="#"></a>
+                <a class="fa fa-times closable" href="#" id="{{pic.name}}"></a>
 
                 <br />
                 <a href="{{context}}/img/{{pic.userid}}/{{pic.name}}">
@@ -74,7 +74,7 @@
                         <input id="button" class="btn btn-lg btn-primary btn-block" type="submit" value="{{btn_upload}}"/>
                       </div>
                       <div class="col-lg-6">
-                        <a id="close" href="#" data-dismiss="modal" class="btn btn-lg btn-success btn-block">{{btn_fechar}}</a>
+                        <a id="done" href="#" data-dismiss="modal" class="btn btn-lg btn-success btn-block">{{btn_fechar}}</a>
                       </div>
                     </div>
                 </form>
@@ -123,12 +123,36 @@
       status.show();
   } 
 
-  $('#close').click(function() { 
+  $('#done').click(function() { 
           $('#status').empty();
           $('#status').hide();
           location.reload();
           return true; 
-      }); 
+  }); 
+
+  $('.closable').click(function(event) { 
+        event.preventDefault();
+        event.stopPropagation();
+
+        var filename = event.target.id;
+
+        var jsonFile = JSON.stringify({'filename': filename});
+
+        $.post(
+              '{{context}}/remove/img/',
+              {filename: filename},
+              function (data, textStatus, jqXHR) {
+                if (data.code === "OK") {
+                  location.reload();
+                } else {
+                  console.log('errrrrroo');
+                }
+              },
+              'json'
+        );
+
+        return true; 
+  }); 
 
 </script>
 

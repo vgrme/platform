@@ -1,8 +1,10 @@
 (ns platform.models.db
+  	(:refer-clojure :exclude [sort find])
 	(:require 
 	   	[monger.core :as mongo]
 		[monger.collection :as coll]
 		[monger.operators :refer :all]
+  		[monger.query :refer :all]
 		[taoensso.timbre :as timbre])
 	(:import 
    		[org.bson.types ObjectId]))
@@ -12,6 +14,7 @@
 (let [uri (get (System/getenv) "MONGOHQ_URL" "mongodb://127.0.0.1/geduca-platform")]
 	(mongo/connect-via-uri! uri))		
 
+ (defn now [] (new java.util.Date))
 
 (defn create-user [email enc-pwd]
 	(let [oid (ObjectId.)]
@@ -38,9 +41,18 @@
 	(nil? (coll/find-one-as-map "users" {:email email})))
 
 
-(defn add-image [userid filename]
-  	(coll/insert "images" {:userid userid :name filename}))
+(defn add-image [user-id filename]
+  	(coll/insert "images" {:userid user-id :name filename :created (now)}))
 
 
-(defn images-by-user [userid]
-  	(coll/find-maps "images" {:userid userid}))
+(defn remove-image [user-id filename]
+  	(coll/remove "images" {:userid user-id :name filename}))
+
+
+(defn images-by-user [user-id]
+	(with-collection "images"
+		(find {:userid user-id})
+		(fields [:userid :name :created])
+		(sort (array-map :created 1))
+		(limit 100)))
+
