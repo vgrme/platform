@@ -13,14 +13,17 @@
           <li><a href="{{context}}/nova/aula"><i class="fa fa-file"></i> {{bc_new_lesson}}</a></li>
           <li class="selected"><i class="fa fa-file"></i> {{bc_new_act}}</li>
         </ol>
-     
-        <h2 class="page-header text-center">{{title}}</h2>
 
+        <div class="col-lg-offset-3 col-lg-6">
+          <input class="form-control activity-title" placeholder="{{title}}" name="activiy-name" type="name">
+        </div>
+     
         <form action="{{context}}/nova/atividade" class="form" method="POST">
           <div class="quiz right-wrong" id="quiz">
           </div>
           
           <h3 class="page-footer"></h3>
+          
           <div class="row">
             <div class="col-md-3 text-left">
               <input class="add-right-wrong-box btn btn-lg btn-block btn-primary" type="button" value="{{btn_add}}" />

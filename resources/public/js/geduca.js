@@ -26,27 +26,27 @@
 
     	var newQuestion;
       	newQuestion = "<div class='right-wrong box-question'>" +
-	      				"<div class='question'>" +
-	                      "<div class='col-md-1 number'>" +
+	      				"<div class='question col-lg-12'>" +
+	                      "<div class='col-lg-1 number'>" +
 	                        "<label id='number-"+totalQuestions+"'>" + totalQuestions + "</label>" +
 	                      "</div>" +
-	                      "<textarea id='txt-"+totalQuestions+"'class='col-md-10 question text' placeholder='Digite aqui sua pergunta...'>" +
+	                      "<textarea id='txt-"+totalQuestions+"'class='col-lg-10 question text' placeholder='Digite aqui sua pergunta...'>" +
 	                      "</textarea>" +
-	                      "<a href='#' class='col-md-1 remove remove-right-wrong-box btn fa fa-times-circle' role='button'></a>"+
+	                      "<a href='#' class='col-lg-1 remove remove-right-wrong-box btn fa fa-times' role='button'></a>"+
 	                    "</div>" +
-	                    "<div class='answer'>" +
-	                      "<div class='col-md-11 option'>" +
-	                        "<label class='col-md-2 btn option'>" +
+	                    "<div class='answer col-lg-12'>" +
+	                      "<div class='col-lg-offset-1 col-lg-10 option'>" +
+	                        "<label class='col-lg-2 btn option'>" +
 	                          "<input type='radio' name='mode'>" + " C " +
 	                        "</label>" +
-	                       "<textarea class='col-md-9 answer text' placeholder='Digite aqui sua resposta...'>" +
+	                       "<textarea class='col-lg-10 answer text' placeholder='Digite aqui sua resposta...'>" +
 	                       "</textarea>" +
 	                      "</div>" +
-	                      "<div class='col-md-11 option'>" +
-	                        "<label class='col-md-2 btn option'>" +
+	                      "<div class='col-lg-offset-1 col-lg-10 option'>" +
+	                        "<label class='col-lg-2 btn option'>" +
 	                          "<input type='radio' name='mode'>" + " E " +
 	                        "</label>" +
-	                        "<textarea class='col-md-9 answer text' placeholder='Digite aqui sua outra resposta...'>" +
+	                        "<textarea class='col-lg-10 answer text' placeholder='Digite aqui sua outra resposta...'>" +
 	                       "</textarea>" +
 	                      "</div>" +
 	                    "</div>" +

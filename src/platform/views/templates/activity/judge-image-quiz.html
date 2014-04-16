@@ -14,16 +14,19 @@
           <li class="selected"><i class="fa fa-file"></i> {{bc_new_act}}</li>
         </ol>
 
-        <h2 class="page-header text-center">{{title}}</h2>
-
-        <p><a class="fa fa-plus btn btn-primary btn" data-toggle="modal" href="#modal-upload"> {{lbl_upload_image}}</a></p>
-
+        <div class="col-lg-offset-3 col-lg-6">
+          <input class="form-control activity-title" placeholder="{{title}}" name="activiy-name" type="name">
+        </div>
+         
         <form action="{{context}}/nova-atividade" method="POST">
           <div class="quiz judge-image quiz judge-image col-lg-12 text-center" id="quiz">
             {% for pic in pictures %}
               <div class="thumbnail col-lg-3">
 
-                <a class={{pic.name}} href="{{context}}/img/{{pic.userid}}/{{pic.name}}">
+                <a class="fa fa-times closable" href="#"></a>
+
+                <br />
+                <a href="{{context}}/img/{{pic.userid}}/{{pic.name}}">
                   <img src="{{context}}/img/{{pic.userid}}/{{thumb-prefix}}{{pic.name}}"/>
                 </a>
              
@@ -42,8 +45,15 @@
             {% endfor %}
           </div>
 
-          <div class="box-footer-btn col-lg-offset-9 col-lg-3">
-            <input class="btn btn-lg btn-success btn-block " type="submit" value="{{btn_done}}"/>
+          <h3 class="page-footer"></h3>
+
+          <div class="row">
+            <div class="col-md-3 text-left">
+               <input class="btn btn-lg btn-block btn-primary fa fa-plus" data-toggle="modal" type="button" href="#modal-upload" value="{{lbl_upload_image}}"/>
+            </div>
+            <div class="col-md-3 col-md-offset-6 text-right">
+              <input class="btn btn-lg btn-success btn-block" type="submit" value="{{btn_done}}"/>
+            </div>
           </div>
         </form>
   
@@ -68,7 +78,9 @@
 
                 <form id="form-upload" enctype="multipart/form-data" method="POST">
                     <input id="file" name="file" type="file" accept="image/*" data-filename-placement="inside"/>
+                    <div class="col-lg-4 ">
                     <input id="button" class="btn btn-lg btn-primary btn-block" type="submit" value="{{btn_upload}}"/>
+                    </div>
                 </form>
               </div><!-- /.row  -->
             </div> <!-- /.modal=body  -->
@@ -98,9 +110,9 @@
     $('#form-upload').on('submit', uploadFiles);
 
     function uploadFiles(event) {
-        event.stopPropagation(); // Stop stuff happening
-        event.preventDefault(); // Totally stop stuff happening
-     
+        event.stopPropagation(); 
+        event.preventDefault();
+
         var data = new FormData();
         $.each(files, function(key, value) {
           data.append(key, value);
@@ -111,11 +123,14 @@
             type: 'POST',
             data: data,
             cache: false,
-            dataType: 'json',
-            processData: false, // Don't process the files
-            contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+            dataType: 'multipart/form-data',
+            processData: false,
+            contentType: true, // Set content type to false as jQuery will tell the server its a query string request
             success: function(data, textStatus, jqXHR) {
-              if(typeof data.error === 'undefined') {
+              
+              console.log('result: ' + data + ' - ' + textStatus + ' - ' + jqXHR);
+
+              if (typeof data.error === 'undefined') {
                 // Success so call function to process the form
                 submitForm(event, data);
               } else {

@@ -14,7 +14,7 @@
     {:bc_lessons "Aulas"
      :bc_new_lesson "Nova aula"
      :bc_new_act "Nova atividade"
-     :title "Atividade: Certo ou Errado"
+     :title "Digite aqui o nome da sua atividade..."
      :btn_add "Nova Questão"
      :btn_done "Feito"}))
 
@@ -25,7 +25,7 @@
     {:bc_lessons "Aulas"
      :bc_new_lesson "Nova aula"
      :bc_new_act "Nova atividade"
-     :title "Atividade: Julgando Imagens"
+     :title "Digite aqui o nome da sua atividade..."
      :btn_add "Nova Questão"
      :btn_done "Feito"
      :btn_upload "Carregar"

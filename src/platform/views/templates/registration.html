@@ -5,19 +5,19 @@
 <form action="{{context}}/register" method="POST">
    <fieldset>
       <div class="form-group">
-          <input type="email" class="form-control" placeholder="E-mail" name="email" type="email">
+          <input class="form-control" placeholder="E-mail" name="email" type="email">
           {% if email-error %}
             <div class="alert alert-danger">{{email-error}}</div>
           {% endif %}
       </div>
       <div class="form-group">
-          <input type="password" class="form-control" placeholder="Senha" name="password" type="password">
+          <input class="form-control" placeholder="Senha" name="password" type="password">
           {% if password-error %}
             <div class="alert alert-danger">{{password-error}}</div>
           {% endif %}
       </div>
       <div class="form-group">
-          <input type="password" class="form-control" placeholder="Confirmar senha" name="passwordc" type="password">
+          <input class="form-control" placeholder="Confirmar senha" name="passwordc" type="password">
            {% if passwordc-error %}
             <div class="alert alert-danger">{{passwordc-error}}</div>
           {% endif %}
