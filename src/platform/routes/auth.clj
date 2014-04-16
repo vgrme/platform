@@ -79,8 +79,10 @@
 (defn coming-soon [& [success]]
 	(layout/render 
 	   	"coming-soon.html"
-		{:message "Estamos trabalhando para lançar a nossa primeira versão.
-		           Deixe seu e-mail que entraremos em contato para compartilhar as novidades."
+		{:message "Olá,\n
+            		estamos em desenvolvimento, mas deixe seu e-mail para receber um 
+            		convite de primeira mão e ter acesso total e gratuíto a plataforma 
+           			assim que lançarmos a primeira versão :)"
 		 :email-error (vali/on-error :email first)
 		 :success success}))
 
@@ -127,10 +129,6 @@
 		(login)))
 
 
- (defn logged? [] 
-   (if (empty? (session/get :user-id)) false true))
-
-
 (defn logout []
 	(session/clear!)
  	(session/remove! :user-id)
@@ -151,9 +149,7 @@
 
 (defroutes auth-routes
   	(GET "/" [] 
-        (if (logged?)
-           		(resp/redirect "/home") 
-               	(resp/redirect "/login")))
+         (restricted (resp/redirect "/home")))
    
   	(GET "/login" [] 
 		(login))

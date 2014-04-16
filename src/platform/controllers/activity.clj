@@ -11,27 +11,28 @@
 (defn right-wrong-quiz []
   (layout/render
     "activity/right-wrong-quiz.html"
-    {:bc_lessons "Aulas"
-     :bc_new_lesson "Nova aula"
-     :bc_new_act "Nova atividade"
-     :title "Digite aqui o nome da sua atividade..."
-     :btn_add "Nova Questão"
-     :btn_done "Feito"}))
+    {:bc_lessons      "Aulas"
+     :bc_new_lesson   "Nova aula"
+     :bc_new_act      "Nova atividade"
+     :title           "Digite aqui o nome da sua atividade..."
+     :btn_add         "Nova Questão"
+     :btn_done        "Feito"}))
 
 
 (defn judge-image-quiz [userid]
   (layout/render
     "activity/judge-image-quiz.html"
-    {:bc_lessons "Aulas"
-     :bc_new_lesson "Nova aula"
-     :bc_new_act "Nova atividade"
-     :title "Digite aqui o nome da sua atividade..."
-     :btn_add "Nova Questão"
-     :btn_done "Feito"
-     :btn_upload "Carregar"
-     :lbl_upload_image "Carregar imagem"
-     :thumb-prefix "thumb_"
-     :page-owner userid
+    {:bc_lessons        "Aulas"
+     :bc_new_lesson     "Nova aula"
+     :bc_new_act        "Nova atividade"
+     :title             "Digite aqui o nome da sua atividade..."
+     :btn_add           "Nova Questão"
+     :btn_done          "Feito"
+     :btn_upload        "Carregar"
+     :btn_fechar        "Fechar"
+     :lbl_upload_image  "Carregar imagem"
+     :thumb-prefix      "thumb_"
+     :page-owner        userid
      :pictures (db/images-by-user userid)}))
 
 (defn new-activity []
